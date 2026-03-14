@@ -1,6 +1,6 @@
 public class EmployeeFactory
 {
-    private EmployeeFactory CreateEmployee()
+    private Employee CreateEmployee()
     {
         return new Employee();
     }
