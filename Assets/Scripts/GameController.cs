@@ -13,12 +13,21 @@ public class GameController : MonoBehaviour
     void Update()
     {
         //"P" to progress round
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P) && canProgress())
         {
             ProgressRound();
             print(round);
             print(roundPhase);
         }
+    }
+    private bool canProgress()
+    {
+        //just to prevend players from going to next round before everything is finished eg. all animations are done / conflicts are resolved
+        if (mainCameraControl.IsInAnimation())
+        {
+            return false;
+        }
+        return true;
     }
     private void ProgressRound()
     {
