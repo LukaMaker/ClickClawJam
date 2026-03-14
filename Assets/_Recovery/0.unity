@@ -247,9 +247,9 @@ MonoBehaviour:
   DepartmentType: 1
   DesiredStats:
   - Stat: 0
-    Weighting: 1
+    Weighting: 0
   - Stat: 2
-    Weighting: 0.2
+    Weighting: 0
 --- !u!1 &130520922
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,11 +639,11 @@ MonoBehaviour:
   DepartmentType: 2
   DesiredStats:
   - Stat: 2
-    Weighting: 0.2
+    Weighting: 0
   - Stat: 0
-    Weighting: 0.5
+    Weighting: 0
   - Stat: 1
-    Weighting: 0.5
+    Weighting: 0
 --- !u!1 &998494602
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,9 +903,9 @@ MonoBehaviour:
   DepartmentType: 0
   DesiredStats:
   - Stat: 2
-    Weighting: 1
+    Weighting: 0
   - Stat: 1
-    Weighting: 0.2
+    Weighting: 0
 --- !u!1 &1102827137
 GameObject:
   m_ObjectHideFlags: 0

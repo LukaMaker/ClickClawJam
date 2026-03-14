@@ -4,6 +4,13 @@ using UnityEngine;
 public class MainCameraControl : MonoBehaviour
 {
     private bool inAnimation = false; //checks if is in an animation
+    public CurrentView currentView;
+    public enum CurrentView
+    {
+        Desk,
+        WareHouse
+    }
+
     public void ViewWareHouse()
     {
         StartCoroutine(LookAnimation(-35, 1.5f));
