@@ -5,7 +5,7 @@ public class Employee
     private string name;
     private int salary;
     private int[] stats;
-    private PersonalityType personality;
+    private Globals.PersonalityType personality;
 
     public Employee()
     {
