@@ -1,15 +1,13 @@
 public class ResumeFactory
 {
-    public static Resume CreateFromEmployee(Employee employee)
+    public static Resume[] CreateFromEmployees(Employee[] employees)
     {
-        Resume resume = new Resume(employee);
-    }
-    public static List<Resume> CreateFromEmployees(List<Employee> employees)
-    {
-        List<Resume> resumes = new List<Resume>();
-        foreach (Employee emp in employees)
+        Resume[] resumes = new Resume[employees.Length];
+        for (int i = 0; i < employees.Length; i++)
         {
-            resumes.Add(new Resume(emp));
+            resumes[i] = new Resume(employees[i]);
         }
+
+        return resumes;
     }
 }
