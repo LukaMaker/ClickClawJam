@@ -3,7 +3,7 @@ using UnityEngine;
 [System.Serializable]
 public struct StatWeight
 {
-    public Globals.Stats Stat;
+    public Globals.Trait Stat;
     [Range(0f, 1f)]
     public float Weighting;
 }

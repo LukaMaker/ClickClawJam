@@ -17,7 +17,7 @@ public static class Globals
         A, B, C
     }
 
-    public enum Stats
+    public enum Trait
     {
         Strength,
         Intelligence,
@@ -29,30 +29,12 @@ public static class Globals
         Fight, DptBuff, DptDebuff
     }
 
-
-    [Serializable]
-    public class Worker
-    {
-        public int id;
-        public string name;
-        public PersonalityType personality;
-        public float salary;
-        public float strength;
-        public float intelligence;
-        public float charisma;
-
-        public Department assignedDepartment = Department.None;
-        public float earningsMultiplier = 1f;
-        public bool isFighting = false;
-        public bool isFired = false;
-    }
-
     [Serializable]
     public class FightEvent
     {
         public ObservingEvent eventType = ObservingEvent.Fight;
-        public Worker initiator;
-        public Worker target;
+        public Employee initiator;
+        public Employee target;
         public Department department;
     }
 

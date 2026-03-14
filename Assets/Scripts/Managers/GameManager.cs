@@ -9,9 +9,18 @@ public class GameManager : MonoBehaviour
     public int currentRound { get; private set; }
     public const int totalRounds = 3;
 
+    public int currentProfit { get; private set; }
+    public int requiredProfit = 1000;
+
     private void Awake()
     {
         Instance = this;
+    }
+
+    public void AddProfit(int amount)
+    {
+        currentProfit += amount;
+        EventBus.ProfitChanged(currentProfit);
     }
 
     public void SetState(GameState newState)
@@ -31,7 +40,8 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Observing:
                 currentRound++;
-                if (currentRound >= totalRounds)
+                EventBus.RoundChanged(currentRound);
+                if (currentRound > totalRounds)
                 {
                     SetState(GameState.GameOver);
                 }
@@ -49,6 +59,9 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         currentRound = 0;
+        currentProfit = 0;
+        EventBus.RoundChanged(currentRound);
+        EventBus.ProfitChanged(currentProfit);
         SetState(GameState.Hiring);
     }
 }

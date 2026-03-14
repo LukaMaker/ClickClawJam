@@ -6,6 +6,7 @@ public class MainCameraControl : MonoBehaviour
     private bool inAnimation = false;
     private bool isViewingWarehouse = false;
     private float animationSpeed = 0.2f;
+    private float rotationalAngle = 50f;
 
     private void OnEnable()
     {
@@ -50,7 +51,7 @@ public class MainCameraControl : MonoBehaviour
         if (isViewingWarehouse) return;
         isViewingWarehouse = true;
         EventBus.ViewChanged(isViewingWarehouse);
-        StartCoroutine(LookAnimation(-35f, animationSpeed));
+        StartCoroutine(LookAnimation(-rotationalAngle, animationSpeed));
     }
 
     public void ViewDesk()
@@ -58,7 +59,7 @@ public class MainCameraControl : MonoBehaviour
         if (!isViewingWarehouse) return;
         isViewingWarehouse = false;
         EventBus.ViewChanged(isViewingWarehouse);
-        StartCoroutine(LookAnimation(35f, animationSpeed));
+        StartCoroutine(LookAnimation(rotationalAngle, animationSpeed));
     }
 
     private IEnumerator LookAnimation(float addAngle, float seconds)

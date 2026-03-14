@@ -9,6 +9,7 @@ public static class EventBus
     public static event Action<GameState> OnGameStateChanged;
     public static event Action<int> OnRoundChanged;
     public static event Action<bool> OnViewChanged;
+    public static event Action<int> OnProfitChanged;
 
     public static void ViewChanged(bool isViewingWarehouse)
     {
@@ -23,5 +24,10 @@ public static class EventBus
     public static void RoundChanged(int round)
     {
         OnRoundChanged?.Invoke(round);
+    }
+
+    public static void ProfitChanged(int currentProfit)
+    {
+        OnProfitChanged?.Invoke(currentProfit);
     }
 }
