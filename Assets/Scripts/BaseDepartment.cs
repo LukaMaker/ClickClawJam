@@ -10,7 +10,7 @@ public struct StatWeight
 
 public class BaseDepartment : MonoBehaviour
 {
-    [SerializeField] private Globals.DepartmentType DepartmentType;
+    [SerializeField] private Globals.Department DepartmentType;
     [SerializeField] private StatWeight[] DesiredStats = new StatWeight[2];
 
     private int employeeCount;
