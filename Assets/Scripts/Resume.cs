@@ -1,12 +1,11 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Resume", menuName = "Scriptable Objects/Resume")]
-public class Resume : ScriptableObject
+public class Resume : MonoBehaviour
 {
-    private Employee employee;
+    public Employee Employee { get; private set; }
 
-    public Resume(Employee employee)
+    public void Initialize(Employee employee)
     {
-        //
+        Employee = employee;
     }
 }
