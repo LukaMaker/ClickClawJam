@@ -1,10 +1,11 @@
 using System.Runtime.CompilerServices;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class FightManager : MonoBehaviour
 {
-    public List<Fight> GenerateFights(List<Employee> employees, Globals.Department department)
+    public List<Fight> GenerateFights(List<Employee> employees, Globals.Department department, int maxFights)
     {
         List<Fight> fights = new();
 
@@ -31,7 +32,21 @@ public class FightManager : MonoBehaviour
             }
         }
 
-        // return list of triggered fights
+        // randomly pick maxFight number
+        List<Fight> finalFights = new();
+        if (fights.Count > maxFights)
+        {
+            List<Fight> remainingFights = new(fights);
+            for (int i = 0; i < maxFights; i++)
+            {
+                int pick = UnityEngine.Random.Range(0, remainingFights.Count);
+                finalFights.Add(remainingFights[pick]);
+                remainingFights.RemoveAt(pick);
+            }
+
+            return finalFights;
+        }
+
         return fights;
     }
 
