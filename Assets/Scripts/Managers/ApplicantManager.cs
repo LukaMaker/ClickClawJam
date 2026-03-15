@@ -10,7 +10,7 @@ namespace Assets.Scripts.Managers
     {
         public static ApplicantManager Instance { get; private set; }
 
-        public List<Resume> currentRoundPool = new List<Resume>();
+        public List<Employee> currentRoundPool = new List<Employee>();
         public int processedResumesCount = 0;
 
         private void Awake()
@@ -48,16 +48,18 @@ namespace Assets.Scripts.Managers
             currentRoundPool.Clear();
             processedResumesCount = 0;
 
-            List<Resume> tempGlobalPool = new List<Resume>(Globals.GlobalWorkerPool.Values);
+            currentRoundPool = GetRandomEmployees();
 
-            for (int i = 0; i < GameConfig.ResumesPerRound && tempGlobalPool.Count > 0; i++)
-            {
-                int randomIndex = Random.Range(0, tempGlobalPool.Count);
-                currentRoundPool.Add(tempGlobalPool[randomIndex]);
-                tempGlobalPool.RemoveAt(randomIndex);
-            }
+            
 
             HiringCanvasUI.Instance.StartNewRoundUI();
+        }
+        private List<Employee> GetRandomEmployees()
+        {
+            //gets stack of 10 employees from global
+            List<Employee> employees = new List<Employee>();
+
+            return employees;
         }
 
         public List<Resume> GetNextBatch()
@@ -67,7 +69,7 @@ namespace Assets.Scripts.Managers
 
             for (int i = 0; i < resumesToSpawn; i++)
             {
-                batch.Add(currentRoundPool[processedResumesCount + i]);
+                //batch.Add(currentRoundPool[processedResumesCount + i]);
             }
 
             return batch;

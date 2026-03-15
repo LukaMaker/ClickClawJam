@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public static class Globals
 {
-    public static Dictionary<Employee, Resume> GlobalWorkerPool;
+    public static List<Employee> GlobalWorkerPool;
 
     public enum Department
     {
