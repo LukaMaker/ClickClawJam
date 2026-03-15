@@ -47,7 +47,7 @@ namespace Assets.Scripts.UI
         {
             if (roundText != null)
             {
-                roundText.text = $"Fiscal Quarter: {round}/{GameManager.totalRounds}";
+                roundText.text = $"Fiscal Quarter: {round}/{GameConfig.NumRounds}";
             }
         }
 

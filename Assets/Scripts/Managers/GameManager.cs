@@ -7,11 +7,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public GameState currentState { get; private set; }
-    public int currentRound { get; private set; }
-    public const int totalRounds = 3;
+    public int currentRound { get; private set; } = 1;
 
     public int currentProfit { get; private set; }
-    public int requiredProfit = 1000;
+    public int requiredProfit = GameConfig.TargetProfit;
 
     private void Awake()
     {
@@ -28,7 +27,7 @@ public class GameManager : MonoBehaviour
     {
         currentState = newState;
         Debug.Log($"Game state changed to: {currentState}");
-        Debug.Log($"Current round: {currentRound} of {totalRounds} rounds");
+        Debug.Log($"Current round: {currentRound} of {GameConfig.NumRounds} rounds");
         EventBus.StateChanged(newState);
 
         if (newState == GameState.Hiring)
@@ -47,7 +46,7 @@ public class GameManager : MonoBehaviour
             case GameState.Observing:
                 currentRound++;
                 EventBus.RoundChanged(currentRound);
-                if (currentRound > totalRounds)
+                if (currentRound > GameConfig.NumRounds)
                 {
                     SetState(GameState.GameOver);
                 }
@@ -64,7 +63,7 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
-        currentRound = 0;
+        currentRound = 1;
         currentProfit = 0;
         EventBus.RoundChanged(currentRound);
         EventBus.ProfitChanged(currentProfit);
