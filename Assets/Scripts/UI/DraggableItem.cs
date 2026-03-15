@@ -82,7 +82,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
         if (trashUI != null && trashUI.RectTransformsIntersect(itemRect))
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
             return;
         }
 

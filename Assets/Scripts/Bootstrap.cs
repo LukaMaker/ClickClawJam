@@ -5,24 +5,23 @@ using System.Collections.Generic;
 public class Bootstrap : MonoBehaviour
 {
     [SerializeField] private GameObject resumeContainer;
-    public static Dictionary<Employee, Resume> GlobalApplicantPool { get; private set; }
 
     void Start()
     {
-        InitializeApplicants();
+        InitialiseWorkers();
         GameManager.Instance.SetState(GameState.Hiring);
     }
 
-    private void InitializeApplicants()
+    private void InitialiseWorkers()
     {
-        GlobalApplicantPool = new Dictionary<Employee, Resume>();
+        Globals.GlobalWorkerPool = new Dictionary<Employee, Resume>();
         
-        List<Employee> employees = EmployeeFactory.CreateGlobalPool(GameConfig.GlobalApplicantPool);
+        List<Employee> employees = EmployeeFactory.CreateGlobalPool(GameConfig.NumWorkers);
         Resume[] resumes = ResumeFactory.CreateFromEmployees(employees.ToArray(), resumeContainer.transform);
 
         for (int i = 0; i < employees.Count; i++)
         {
-            GlobalApplicantPool.Add(employees[i], resumes[i]);
+            Globals.GlobalWorkerPool.Add(employees[i], resumes[i]);
         }
     }
 }

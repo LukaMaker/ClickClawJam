@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 
 public static class Globals
 {
+    public static Dictionary<Employee, Resume> GlobalWorkerPool;
 
     public enum Department
     {

@@ -10,6 +10,7 @@ public static class EventBus
     public static event Action<int> OnRoundChanged;
     public static event Action<bool> OnViewChanged;
     public static event Action<int> OnProfitChanged;
+    public static event Action OnResumesConfirmed;
 
     public static void ViewChanged(bool isViewingWarehouse)
     {

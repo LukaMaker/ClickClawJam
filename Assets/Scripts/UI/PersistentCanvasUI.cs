@@ -7,6 +7,7 @@ namespace Assets.Scripts.UI
     {
         [SerializeField] private TextMeshProUGUI roundText;
         [SerializeField] private TextMeshProUGUI profitText;
+        [SerializeField] private TextMeshProUGUI stateText;
 
         private void OnEnable()
         {
@@ -24,6 +25,12 @@ namespace Assets.Scripts.UI
         {
             UpdateRoundText(GameManager.Instance.currentRound);
             UpdateProfitText(GameManager.Instance.currentProfit, GameManager.Instance.requiredProfit);
+        }
+
+        private void Update()
+        {
+            if (GameManager.Instance.currentState == GameState.Hiring) stateText.text = "Hiring phase";
+            if (GameManager.Instance.currentState == GameState.Observing) stateText.text = "Observing phase";
         }
 
         private void HandleRoundChanged(int currentRound)
