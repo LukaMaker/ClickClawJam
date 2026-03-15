@@ -9,6 +9,12 @@ public static class EventBus
     public static event Action<int> OnProfitChanged;
     public static event Action OnResumesConfirmed;
     public static event Action<   Dictionary<BaseDepartment, List<Employee>>   > OnHireRoundEnded;
+    public static event Action<BaseDepartment, List<Employee>> OnEmployeesAssigned;
+
+    public static void EmployeesAssigned(BaseDepartment department, List<Employee> employees)
+    {
+        OnEmployeesAssigned?.Invoke(department, employees);
+    }
 
     public static void HireRoundEnded(Dictionary<BaseDepartment, List<Employee>> hiredEmployees)
     {
