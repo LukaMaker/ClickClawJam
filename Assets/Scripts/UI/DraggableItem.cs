@@ -31,7 +31,6 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("Begin Drag");
         parentAfterDrag = transform.parent;
 
         UISlot currentSlot = parentAfterDrag.GetComponent<UISlot>();
@@ -61,7 +60,6 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("Dragging");
         transform.position = Input.mousePosition;
 
         RectTransform itemRect = GetComponent<RectTransform>();
@@ -75,9 +73,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
 
     public void OnEndDrag(PointerEventData eventData)
-    {
-        Debug.Log("End Drag");
-        
+    {   
         RectTransform itemRect = GetComponent<RectTransform>();
 
         if (trashUI != null && trashUI.RectTransformsIntersect(itemRect))

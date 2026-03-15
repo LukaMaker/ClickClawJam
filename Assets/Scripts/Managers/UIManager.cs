@@ -9,7 +9,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] ObservingCanvasUI observingCanvasUI;
     [SerializeField] GameOverUI gameOverUI;
 
-
     private void OnEnable()
     {
         EventBus.OnGameStateChanged += HandleGameStateChanged;

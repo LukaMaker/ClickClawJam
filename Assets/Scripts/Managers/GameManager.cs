@@ -1,7 +1,8 @@
-﻿using System;
-using System.Runtime.InteropServices.WindowsRuntime;
-using UnityEngine;
+﻿using UnityEngine;
+using Assets.Scripts.Managers;
 
+// controls core game loop/state machine. when in GameState.Hiring, ApplicantManager.HandleHiringRound()
+// is called and prepares resume data from the Globals.GlobalWorkerPool that contains all the "cards" in the game basically.
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -29,6 +30,11 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Game state changed to: {currentState}");
         Debug.Log($"Current round: {currentRound} of {totalRounds} rounds");
         EventBus.StateChanged(newState);
+
+        if (newState == GameState.Hiring)
+        {
+            ApplicantManager.Instance.HandleHiringRound();
+        }
     }
 
     public void NextState()
