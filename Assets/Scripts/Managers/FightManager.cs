@@ -1,28 +1,51 @@
 using System.Runtime.CompilerServices;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FightManager : MonoBehaviour
 {
     public List<Fight> GenerateFights(List<Employee> employees, Globals.Department department)
     {
+        List<Fight> fights = new();
+
         // check each pair
+        for (int i = 0; i < employees.Count; i++)
+        {
+            for (int j = i + 1; j < employees.Count; j++)
+            {
+                Employee a = employees[i];
+                Employee b = employees[j];
+
+                float chanceAInitiates = Globals.ConflictMatrix[a.personality][b.personality];
+                float chanceBInitiates = Globals.ConflictMatrix[b.personality][a.personality];
+
+                if (UnityEngine.Random.value < chanceAInitiates)
+                {
+                    fights.Add(new Fight(a, b, department));
+                }
+
+                if (UnityEngine.Random.value < chanceBInitiates)
+                {
+                    fights.Add(new Fight(b, a, department));
+                }
+            }
+        }
+
         // return list of triggered fights
+        return fights;
     }
 
-    public void Resolve(Fight fight, FightOutcome outcome, Employee reallocated = null)
+    public void Resolve(Fight fight, Globals.FightOutcome outcome, Employee reallocated = null)
     {
         switch (outcome)
         {
-            case FightOutcome.Ignored:
-                // roll for voluntary leave chance
-                break;
-            case FightOutcome.Terminated:
-                // remove initiator
+            case Globals.FightOutcome.InstTerminated:
+                // remove instigator
                 // apply productivity boost to target
                 break;
-            case FightOutcome.Reallocated:
-                // change reallocated employee department
-                // apply productivity reduction to reallocated
+            case Globals.FightOutcome.TargTerminated:
+                // remove target
+                // apply productivity boost to instigator?
                 break;
         }
     }
