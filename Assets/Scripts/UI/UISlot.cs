@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class UISlot : MonoBehaviour
 {
+    public BaseDepartment department;
     public List<DraggableItem> slottedItems = new List<DraggableItem>();
 
     public void AddItem(DraggableItem item)

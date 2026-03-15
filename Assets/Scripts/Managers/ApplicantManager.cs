@@ -18,6 +18,31 @@ namespace Assets.Scripts.Managers
             Instance = this;
         }
 
+        private void OnEnable()
+        {
+            EventBus.OnHireRoundEnded += HandleHireRoundEnded;
+        }
+
+        private void OnDisable()
+        {
+            EventBus.OnHireRoundEnded -= HandleHireRoundEnded;
+        }
+
+        private void HandleHireRoundEnded(Dictionary<BaseDepartment, List<Employee>> hiredEmployees)
+        {
+            foreach (var workerData in hiredEmployees)
+            {
+                BaseDepartment department = workerData.Key;
+                List<Employee> employees = workerData.Value;
+                
+                if (department != null && employees != null)
+                {
+                    department.AssignNewEmployees(employees);
+                    Debug.Log($"Assigned {employees.Count} employees to {department.name}");
+                }
+            }
+        }
+
         public void HandleHiringRound()
         {
             currentRoundPool.Clear();

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 public static class EventBus
 {
@@ -11,6 +8,12 @@ public static class EventBus
     public static event Action<bool> OnViewChanged;
     public static event Action<int> OnProfitChanged;
     public static event Action OnResumesConfirmed;
+    public static event Action<   Dictionary<BaseDepartment, List<Employee>>   > OnHireRoundEnded;
+
+    public static void HireRoundEnded(Dictionary<BaseDepartment, List<Employee>> hiredEmployees)
+    {
+        OnHireRoundEnded?.Invoke(hiredEmployees);
+    }
 
     public static void ViewChanged(bool isViewingWarehouse)
     {

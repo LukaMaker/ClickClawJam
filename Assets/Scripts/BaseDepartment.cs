@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -15,6 +16,10 @@ public class BaseDepartment : MonoBehaviour
 
     private int employeeCount;
     private float productivity;
+    private List<Employee> assignedEmployees = new List<Employee>();
 
-    
+    public void AssignNewEmployees(List<Employee> newEmployees)
+    {
+        assignedEmployees.AddRange(newEmployees);
+    }
 }

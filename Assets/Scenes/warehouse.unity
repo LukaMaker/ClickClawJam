@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d11c31b7223302548bfeac8e38abb34f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BaseDepartment
-  DepartmentType: 1
+  DepartmentType: 2
   DesiredStats:
   - Stat: 0
     Weighting: 1
@@ -791,7 +791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d11c31b7223302548bfeac8e38abb34f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BaseDepartment
-  DepartmentType: 2
+  DepartmentType: 3
   DesiredStats:
   - Stat: 2
     Weighting: 0.2
@@ -943,9 +943,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1064679486}
     m_Modifications:
+    - target: {fileID: 2506397729981604394, guid: bb34811153b16354191cf23d9d189438, type: 3}
+      propertyPath: department
+      value: 
+      objectReference: {fileID: 319859181}
     - target: {fileID: 3537755453092195420, guid: bb34811153b16354191cf23d9d189438, type: 3}
       propertyPath: m_Name
-      value: DepartmentAssignmentTray (2)
+      value: DepCTray
       objectReference: {fileID: 0}
     - target: {fileID: 6137572853511510218, guid: bb34811153b16354191cf23d9d189438, type: 3}
       propertyPath: m_Pivot.x
@@ -1916,7 +1920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d11c31b7223302548bfeac8e38abb34f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BaseDepartment
-  DepartmentType: 3
+  DepartmentType: 4
   DesiredStats:
   - Stat: 0
     Weighting: 0
@@ -2162,7 +2166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d11c31b7223302548bfeac8e38abb34f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BaseDepartment
-  DepartmentType: 0
+  DepartmentType: 1
   DesiredStats:
   - Stat: 2
     Weighting: 1
@@ -4157,9 +4161,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1064679486}
     m_Modifications:
+    - target: {fileID: 2506397729981604394, guid: bb34811153b16354191cf23d9d189438, type: 3}
+      propertyPath: department
+      value: 
+      objectReference: {fileID: 14719066}
     - target: {fileID: 3537755453092195420, guid: bb34811153b16354191cf23d9d189438, type: 3}
       propertyPath: m_Name
-      value: DepartmentAssignmentTray (1)
+      value: DepBTray
       objectReference: {fileID: 0}
     - target: {fileID: 6137572853511510218, guid: bb34811153b16354191cf23d9d189438, type: 3}
       propertyPath: m_Pivot.x
@@ -4259,9 +4267,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1064679486}
     m_Modifications:
+    - target: {fileID: 2506397729981604394, guid: bb34811153b16354191cf23d9d189438, type: 3}
+      propertyPath: department
+      value: 
+      objectReference: {fileID: 1086311475}
     - target: {fileID: 3537755453092195420, guid: bb34811153b16354191cf23d9d189438, type: 3}
       propertyPath: m_Name
-      value: DepartmentAssignmentTray
+      value: DepATray
       objectReference: {fileID: 0}
     - target: {fileID: 6137572853511510218, guid: bb34811153b16354191cf23d9d189438, type: 3}
       propertyPath: m_Pivot.x

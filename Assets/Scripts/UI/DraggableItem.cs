@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    public Resume AssignedResume { get; set; }
     [HideInInspector] public Transform parentAfterDrag;
     private Transform originalParent;
     private TrashUI trashUI;

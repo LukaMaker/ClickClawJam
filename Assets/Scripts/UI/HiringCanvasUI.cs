@@ -53,6 +53,11 @@ namespace Assets.Scripts.UI
             foreach (Resume assignedResume in currentBatch)
             {
                 GameObject resumeObject = Instantiate(resumePrefab, resumeSlotsParent);
+                DraggableItem draggable = resumeObject.GetComponent<DraggableItem>();
+                if (draggable != null)
+                {
+                    draggable.AssignedResume = assignedResume;
+                }
                 activeResumeUIElements.Add(resumeObject);
             }
         }
@@ -75,6 +80,31 @@ namespace Assets.Scripts.UI
         private void OnConfirmRoundClicked()
         {
             Debug.Log("Round complete");
+            
+            Dictionary<BaseDepartment, List<Employee>> hiredEmployees = new Dictionary<BaseDepartment, List<Employee>>();
+            UISlot[] allSlots = FindObjectsOfType<UISlot>();
+
+            foreach (UISlot slot in allSlots)
+            {
+                if (slot.department != null && slot.slottedItems.Count > 0)
+                {
+                    if (!hiredEmployees.ContainsKey(slot.department))
+                    {
+                        hiredEmployees[slot.department] = new List<Employee>();
+                    }
+
+                    foreach (DraggableItem item in slot.slottedItems)
+                    {
+                        if (item.AssignedResume != null && item.AssignedResume.Employee != null)
+                        {
+                            hiredEmployees[slot.department].Add(item.AssignedResume.Employee);
+                        }
+                    }
+                }
+            }
+
+            EventBus.HireRoundEnded(hiredEmployees);
+
             confirmRoundButton.gameObject.SetActive(false);
             ClearActiveResumes();
             GameManager.Instance.NextState();
