@@ -117,6 +117,7 @@ namespace Assets.Scripts.Managers
             {
                 if (currentHand[i] == null) continue;
                 DepartmentTray tray = currentHand[i].currentTray;
+                tray.ClearEmployees();
                 if (tray != null)
                 {
                     //assign empoyee if in a tray

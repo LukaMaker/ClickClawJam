@@ -29,6 +29,6 @@ public class Resume : MonoBehaviour
 
         name.text = Employee.name;
         salary.text = "$" + Employee.salary.ToString();
-        personality.text = Employee.personality.ToString();
+        personality.text = Employee.personality.ToString() + ": " + Employee.description;
     }
 }

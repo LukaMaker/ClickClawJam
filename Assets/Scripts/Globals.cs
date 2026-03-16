@@ -15,11 +15,19 @@ public static class Globals
 
     public enum PersonalityType
     {
-        Psychopath,
+        Psycho,
         Nerd,
-        Narcissists,
-        Suckups
+        Gossip,
+        Slacker
     }
+
+    public static Dictionary<PersonalityType, string> PersonalityDesc = new()
+    {
+        { PersonalityType.Psycho,   "Brings in results, but impossible to work with." },
+        { PersonalityType.Nerd,     "Knows everything, avoids interaction if possible." },
+        { PersonalityType.Gossip,  "Spends more time annoying people than working." },
+        { PersonalityType.Slacker, "Just here for the paycheck. They'd rather go home." }
+    };
 
     public enum Gender
     {
@@ -102,48 +110,48 @@ public static class Globals
     public static Dictionary<PersonalityType, Dictionary<PersonalityType, float>> ConflictMatrix = new()
     {
         {
-            PersonalityType.Psychopath, new Dictionary<PersonalityType, float>
+            PersonalityType.Psycho, new Dictionary<PersonalityType, float>
             {
-                { PersonalityType.Psychopath,   0.15f },
+                { PersonalityType.Psycho,   0.15f },
                 { PersonalityType.Nerd,         0.10f },
-                { PersonalityType.Narcissists,  0.12f },
-                { PersonalityType.Suckups,      0.05f }
+                { PersonalityType.Gossip,  0.12f },
+                { PersonalityType.Slacker,      0.05f }
             }
         },
         {
             PersonalityType.Nerd, new Dictionary<PersonalityType, float>
             {
-                { PersonalityType.Psychopath,   0.08f },
+                { PersonalityType.Psycho,   0.08f },
                 { PersonalityType.Nerd,         0.03f },
-                { PersonalityType.Narcissists,  0.06f },
-                { PersonalityType.Suckups,      0.01f }
+                { PersonalityType.Gossip,  0.06f },
+                { PersonalityType.Slacker,      0.01f }
             }
         },
         {
-            PersonalityType.Narcissists, new Dictionary<PersonalityType, float>
+            PersonalityType.Gossip, new Dictionary<PersonalityType, float>
             {
-                { PersonalityType.Psychopath,   0.12f },
+                { PersonalityType.Psycho,   0.12f },
                 { PersonalityType.Nerd,         0.07f },
-                { PersonalityType.Narcissists,  0.10f },
-                { PersonalityType.Suckups,      0.04f }
+                { PersonalityType.Gossip,  0.10f },
+                { PersonalityType.Slacker,      0.04f }
             }
         },
         {
-            PersonalityType.Suckups, new Dictionary<PersonalityType, float>
+            PersonalityType.Slacker, new Dictionary<PersonalityType, float>
             {
-                { PersonalityType.Psychopath,   0.03f },
+                { PersonalityType.Psycho,   0.03f },
                 { PersonalityType.Nerd,         0.02f },
-                { PersonalityType.Narcissists,  0.04f },
-                { PersonalityType.Suckups,      0.01f }
+                { PersonalityType.Gossip,  0.04f },
+                { PersonalityType.Slacker,      0.01f }
             }
         }
     };
 
     public static Dictionary<PersonalityType, float> ProductivityMatrix = new()
     {
-        { PersonalityType.Psychopath,   4.0f },
+        { PersonalityType.Psycho,   4.0f },
         { PersonalityType.Nerd,         2.8f },
-        { PersonalityType.Narcissists,  1.5f },
-        { PersonalityType.Suckups,      0.4f }
+        { PersonalityType.Gossip,  1.5f },
+        { PersonalityType.Slacker,      0.4f }
     };
 }

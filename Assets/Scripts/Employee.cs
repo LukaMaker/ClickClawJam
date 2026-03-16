@@ -8,6 +8,7 @@ public class Employee
     public int id;
     public string name;
     public PersonalityType personality;
+    public string description;
     public Gender gender;
 
     // base stats

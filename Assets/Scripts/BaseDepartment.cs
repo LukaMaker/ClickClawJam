@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,7 +22,6 @@ public class BaseDepartment : MonoBehaviour
 
     public int employeeCount { get; private set; }
     public float baseProd;
-    public float prodMultiplier;
     public int totalSalary;
     private List<Employee> assignedEmployees = new();
     private List<GameObject> spawnedEmployees = new List<GameObject>();
@@ -58,14 +58,6 @@ public class BaseDepartment : MonoBehaviour
 
         // remove employee prod multiplier from average
         float empProdMult = Globals.ProductivityMatrix[firedEmployee.personality];
-        if (employeeCount <= 1)
-        {
-            prodMultiplier = 0f;
-        }
-        else
-        {
-            prodMultiplier = ((prodMultiplier * employeeCount) - empProdMult)/(employeeCount - 1);
-        }
 
         //remove employee from count
         employeeCount -= 1;
@@ -83,12 +75,18 @@ public class BaseDepartment : MonoBehaviour
             AssignEmployee(employee);
         }
     }
+    public void RemoveEmployees(List<Employee> newEmployees)
+    {
+        foreach (Employee employee in newEmployees)
+        {
+            RemoveEmployee(employee);
+        }
+    }
 
-    private void AssignEmployee(Employee newEmployee)
+    private void AssignEmployee(Employee newEmployee) 
     {
         assignedEmployees.Add(newEmployee);
         float newEmpProdMult = Globals.ProductivityMatrix[newEmployee.personality];
-        prodMultiplier = ((prodMultiplier * employeeCount) + newEmpProdMult)/(employeeCount + 1);
         employeeCount += 1;
         totalSalary += newEmployee.salary;
     }
@@ -193,13 +191,22 @@ public class BaseDepartment : MonoBehaviour
             }
         }
 
-        totalProd *= prodMultiplier;
+        //totalProd *= prodMultiplier;
+        totalProd /= 100; //since all stats 0-100
         return totalProd;
+    }
+    public float GetProdPrediction(List<Employee> emps)
+    {
+        AssignNewEmployees(emps);
+        float prod = GetDepartmentProd();
+        RemoveEmployees(emps);
+        return prod;
     }
 
     public int GetDepartmentGross()
     {
         float totalProd = GetDepartmentProd();
+        print(totalProd);
         int gross = (int)(totalProd*GameConfig.ProductivityRatio);
         return gross;
     }

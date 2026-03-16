@@ -13,7 +13,7 @@ public class FightManager : MonoBehaviour
         Instance = this;
     }
 
-    public void HandleFightPhase(BaseDepartment department)
+    public void HandleFightPhase(List<Fight> fights)
     {
         List<Fight> fights = GenerateFights(department);
         if (fights.Count > 0)
