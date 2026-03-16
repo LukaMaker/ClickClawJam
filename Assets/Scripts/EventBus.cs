@@ -10,6 +10,24 @@ public static class EventBus
     public static event Action OnResumesConfirmed;
     public static event Action<   Dictionary<BaseDepartment, List<Employee>>   > OnHireRoundEnded;
     public static event Action<BaseDepartment, List<Employee>> OnEmployeesAssigned;
+    public static event Action<BaseDepartment> OnFightsResolved;
+    public static event Action OnFightPanelOpened;
+    public static event Action OnFightPanelClosed;
+
+    public static void FightPanelOpened()
+    {
+        OnFightPanelOpened?.Invoke();
+    }
+
+    public static void FightPanelClosed()
+    {
+        OnFightPanelClosed?.Invoke();
+    }
+
+    public static void FightsResolved(BaseDepartment department)
+    {
+        OnFightsResolved?.Invoke(department);
+    }
 
     public static void EmployeesAssigned(BaseDepartment department, List<Employee> employees)
     {
