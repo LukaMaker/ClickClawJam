@@ -11,7 +11,7 @@ public class CharacterPortrait : MonoBehaviour
 
     [Header("Hair Colour")]
     public Color[] hairColours;
-
+    /*
     public void BuildPortrait(Employee employee)
     {
         body.sprite =       employee.body;
@@ -19,5 +19,5 @@ public class CharacterPortrait : MonoBehaviour
         nose.sprite =       employee.nose;
         hair.sprite =       employee.hair;
         accessory.sprite =  employee.accessory;
-    }
+    }*/
 }

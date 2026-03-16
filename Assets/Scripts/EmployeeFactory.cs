@@ -36,22 +36,21 @@ public static class EmployeeFactory
         int charisma = GenerateStat();
         Gender gender = GenerateGender();
 
-        return new Employee()
-        {
-            id =            id,
-            personality =   (PersonalityType)UnityEngine.Random.Range(0, Enum.GetValues(typeof(PersonalityType)).Length),
-            gender =        gender,
-            name =          GenerateName(gender),
-            body =          SpritePool.GetRandomBody(gender, false),
-            hair =          SpritePool.GetRandomHair(gender),
-            mouth =         SpritePool.GetRandomMouth(),
-            nose =          SpritePool.GetRandomNose(),
-            accessory =     SpritePool.GetRandomAccessory(),
-            strength =      strength,
-            intelligence =  intelligence,
-            charisma =      charisma,
-            salary =        GenerateSalary(strength, intelligence, charisma)
-        };
+        Employee e = new Employee();
+        e.id = id;
+        e.personality = (PersonalityType)UnityEngine.Random.Range(0, Enum.GetValues(typeof(PersonalityType)).Length);
+        e.gender = gender;
+        e.name = GenerateName(gender);
+        e.body = EmployeeSpritePool.Instance.GetRandomBody(gender, false);
+        e.hair = EmployeeSpritePool.Instance.GetRandomHair(gender);
+        e.mouth = EmployeeSpritePool.Instance.GetRandomMouth();
+        e.nose = EmployeeSpritePool.Instance.GetRandomNose();
+        e.accessory = EmployeeSpritePool.Instance.GetRandomAccessory();
+        e.strength = strength;
+        e.intelligence = intelligence;
+        e.charisma = charisma;
+        e.salary = GenerateSalary(strength, intelligence, charisma);
+        return e;
     }
 
     private static Gender GenerateGender()

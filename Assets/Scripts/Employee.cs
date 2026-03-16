@@ -16,11 +16,11 @@ public class Employee
     public float charisma;
 
     // sprites
-    public Sprite body;
-    public Sprite hair;
-    public Sprite mouth;
-    public Sprite nose;
-    public Sprite accessory;
+    public Texture body;
+    public Texture hair;
+    public Texture mouth;
+    public Texture nose;
+    public Texture accessory;
     public Color hairColour;
     
     public Department assignedDepartment = Department.None;
