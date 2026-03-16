@@ -105,7 +105,7 @@ namespace Assets.Scripts.UI
 
             EventBus.HireRoundEnded(hiredEmployees);
 
-            confirmRoundButton.gameObject.SetActive(false);
+            confirmRoundButton.interactable = false;
             ClearActiveResumes();
             GameManager.Instance.NextState();
         }
