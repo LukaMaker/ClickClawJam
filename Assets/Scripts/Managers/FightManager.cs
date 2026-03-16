@@ -2,6 +2,7 @@ using System.Runtime.CompilerServices;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System.Linq;
 
 public class FightManager : MonoBehaviour
 {
@@ -33,21 +34,10 @@ public class FightManager : MonoBehaviour
         }
 
         // randomly pick maxFight number
-        List<Fight> finalFights = new();
-        if (fights.Count > maxFights)
-        {
-            List<Fight> remainingFights = new(fights);
-            for (int i = 0; i < maxFights; i++)
-            {
-                int pick = UnityEngine.Random.Range(0, remainingFights.Count);
-                finalFights.Add(remainingFights[pick]);
-                remainingFights.RemoveAt(pick);
-            }
-
-            return finalFights;
-        }
-
-        return fights;
+        return fights
+            .OrderBy(_ => UnityEngine.Random.value)
+            .Take(maxFights)
+            .ToList();
     }
 
     public void Resolve(Fight fight, Globals.FightOutcome outcome, Employee reallocated = null)

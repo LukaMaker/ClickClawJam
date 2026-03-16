@@ -15,11 +15,23 @@ public class BaseDepartment : MonoBehaviour
     [SerializeField] private StatWeight[] DesiredStats = new StatWeight[2];
 
     private int employeeCount;
-    private float productivity;
+    private float baseProd;
+    private float prodMultiplier;
     private List<Employee> assignedEmployees = new List<Employee>();
 
     public void AssignNewEmployees(List<Employee> newEmployees)
     {
-        assignedEmployees.AddRange(newEmployees);
+        foreach (Employee employee in newEmployees)
+        {
+            AssignEmployee(employee);
+        }
+    }
+
+    private void AssignEmployee(Employee newEmployee)
+    {
+        assignedEmployees.Add(newEmployee);
+        float newEmpProdMult = Globals.ProductivityMatrix[newEmployee.personality];
+        prodMultiplier = ((prodMultiplier * employeeCount) + newEmpProdMult)/(employeeCount + 1);
+        employeeCount += 1;
     }
 }
