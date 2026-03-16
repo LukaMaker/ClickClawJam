@@ -21,6 +21,7 @@ public class BaseDepartment : MonoBehaviour
     public int employeeCount { get; private set; }
     public float baseProd;
     public float prodMultiplier;
+    public int totalSalary;
     private List<Employee> assignedEmployees = new List<Employee>();
     private HashSet<Employee> spawnedEmployees = new HashSet<Employee>();
 
@@ -32,6 +33,23 @@ public class BaseDepartment : MonoBehaviour
     private void OnDisable()
     {
         EventBus.OnHireRoundEnded -= HandleHireRoundEnded;
+    }
+
+    public void RemoveEmployee(Employee firedEmployee)
+    {
+        //remove employee from lists
+        assignedEmployees.Remove(firedEmployee);
+        spawnedEmployees.Remove(firedEmployee);
+
+        // remove employee prod multiplier from average
+        float empProdMult = Globals.ProductivityMatrix[firedEmployee.personality];
+        prodMultiplier = ((prodMultiplier * employeeCount) - empProdMult)/(employeeCount - 1);
+
+        //remove employee from count
+        employeeCount -= 1;
+
+        //remove employee salary from total
+        totalSalary -= firedEmployee.salary;
     }
 
     public void AssignNewEmployees(List<Employee> newEmployees)
@@ -48,6 +66,7 @@ public class BaseDepartment : MonoBehaviour
         float newEmpProdMult = Globals.ProductivityMatrix[newEmployee.personality];
         prodMultiplier = ((prodMultiplier * employeeCount) + newEmpProdMult)/(employeeCount + 1);
         employeeCount += 1;
+        totalSalary += newEmployee.salary;
     }
 
     private void HandleHireRoundEnded(Dictionary<BaseDepartment, List<Employee>> hiredEmployees)
