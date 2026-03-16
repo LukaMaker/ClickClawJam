@@ -13,9 +13,9 @@ public class FightManager : MonoBehaviour
         Instance = this;
     }
 
-    public void HandleFightPhase(BaseDepartment department)
+    public void HandleFightPhase(List<Fight> fights)
     {
-        List<Fight> fights = GenerateFights(department);
+        // handle fight resolution
     }
 
     public List<Fight> GenerateFights(BaseDepartment department, int maxFights = 2)
