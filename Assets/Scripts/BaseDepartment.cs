@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public struct StatWeight
@@ -100,6 +101,18 @@ public class BaseDepartment : MonoBehaviour
 
         wanderer.walkArea = areaBounds;
         spawnedEmployees.Add(employee);
+
+        //set visuals
+        newEmployeeObj.transform.GetChild(0).GetComponent<RawImage>().texture = employee.body;
+        newEmployeeObj.transform.GetChild(0).GetComponent<RawImage>().color = employee.colours[0];
+        newEmployeeObj.transform.GetChild(1).GetComponent<RawImage>().texture = employee.nose;
+        newEmployeeObj.transform.GetChild(1).GetComponent<RawImage>().color = employee.colours[1];
+        newEmployeeObj.transform.GetChild(2).GetComponent<RawImage>().texture = employee.mouth;
+        newEmployeeObj.transform.GetChild(2).GetComponent<RawImage>().color = employee.colours[2];
+        newEmployeeObj.transform.GetChild(3).GetComponent<RawImage>().texture = employee.hair;
+        newEmployeeObj.transform.GetChild(3).GetComponent<RawImage>().color = employee.colours[3];
+        newEmployeeObj.transform.GetChild(4).GetComponent<RawImage>().texture = employee.accessory;
+        newEmployeeObj.transform.GetChild(4).GetComponent<RawImage>().color = employee.colours[4];
     }
     public float GetDepartmentProd()
     {
