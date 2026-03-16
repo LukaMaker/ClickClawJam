@@ -44,11 +44,6 @@ public class GameManager : MonoBehaviour
                 }
                 break;
         }
-
-        if (newState == GameState.Hiring)
-        {
-            ApplicantManager.Instance.HandleHiringRound();
-        }
     }
 
     public void NextState()
