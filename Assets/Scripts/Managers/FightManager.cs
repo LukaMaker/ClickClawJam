@@ -15,11 +15,12 @@ public class FightManager : MonoBehaviour
 
     public void HandleFightPhase(BaseDepartment department)
     {
-        List<Fight> fights = GenerateFights(department.GetEmployees(), department);
+        List<Fight> fights = GenerateFights(department);
     }
 
-    public List<Fight> GenerateFights(List<Employee> employees, BaseDepartment department, int maxFights = 2)
+    public List<Fight> GenerateFights(BaseDepartment department, int maxFights = 2)
     {
+        List<Employee> employees = department.GetEmployees();
         List<Fight> fights = new();
 
         // check each pair

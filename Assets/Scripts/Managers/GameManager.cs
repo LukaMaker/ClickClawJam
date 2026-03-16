@@ -1,5 +1,6 @@
 using UnityEngine;
 using Assets.Scripts.Managers;
+using System.Collections.Generic;
 
 // controls core game loop/state machine. when in GameState.Hiring, ApplicantManager.HandleHiringRound()
 // is called and prepares resume data from the Globals.GlobalWorkerPool that contains all the "cards" in the game basically.
@@ -37,9 +38,11 @@ public class GameManager : MonoBehaviour
                 ApplicantManager.Instance.HandleHiringRound();
                 break;
             case GameState.Observing:
+                List<Fight> fights = new();
                 foreach (BaseDepartment department in departments)
                 {
                     department.SpawnEmployees();
+                    fights.AddRange(FightManager.Instance.GenerateFights(department));
                     FightManager.Instance.HandleFightPhase(department);
                 }
                 break;
