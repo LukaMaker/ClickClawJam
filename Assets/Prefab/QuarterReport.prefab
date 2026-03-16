@@ -604,6 +604,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1d4769dd9a2fa742ac7d7ad8fdbbd2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  department: {fileID: 2863604706689223372}
+  gross: {fileID: 1405556671500926648}
+  salary: {fileID: 4518140623691590899}
+  net: {fileID: 5252318980981686482}
+  quarterlyProfit: {fileID: 3853440594763974754}
+  runningProfit: {fileID: 1840553991417869141}
 --- !u!1 &409875047534843673
 GameObject:
   m_ObjectHideFlags: 0
