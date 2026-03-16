@@ -7,6 +7,18 @@ using static Globals;
 public static class EmployeeFactory
 {
     private static System.Random rng = new System.Random();
+    private static EmployeeSpritePool _spritePool;
+    private static EmployeeSpritePool SpritePool
+    {
+        get
+        {
+            if (_spritePool == null)
+            {
+                _spritePool = GameObject.FindAnyObjectByType<EmployeeSpritePool>();
+            }
+            return _spritePool;
+        }
+    }
     public static List<Employee> CreateGlobalPool(int count)
     {
         List<Employee> pool = new List<Employee>(count);
@@ -22,18 +34,23 @@ public static class EmployeeFactory
         int strength = GenerateStat();
         int intelligence = GenerateStat();
         int charisma = GenerateStat();
+        Gender gender = GenerateGender();
 
-        return new Employee()
-        {
-            id = id,
-            name = "Employee " + id,
-            personality = (PersonalityType)UnityEngine.Random.Range(0, Enum.GetValues(typeof(PersonalityType)).Length),
-            gender = GenerateGender(),
-            strength = strength,
-            intelligence = intelligence,
-            charisma = charisma,
-            salary = GenerateSalary(strength, intelligence, charisma)
-        };
+        Employee e = new Employee();
+        e.id = id;
+        e.personality = (PersonalityType)UnityEngine.Random.Range(0, Enum.GetValues(typeof(PersonalityType)).Length);
+        e.gender = gender;
+        e.name = GenerateName(gender);
+        e.body = EmployeeSpritePool.Instance.GetRandomBody(gender, false);
+        e.hair = EmployeeSpritePool.Instance.GetRandomHair(gender);
+        e.mouth = EmployeeSpritePool.Instance.GetRandomMouth();
+        e.nose = EmployeeSpritePool.Instance.GetRandomNose();
+        e.accessory = EmployeeSpritePool.Instance.GetRandomAccessory();
+        e.strength = strength;
+        e.intelligence = intelligence;
+        e.charisma = charisma;
+        e.salary = GenerateSalary(strength, intelligence, charisma);
+        return e;
     }
 
     private static Gender GenerateGender()
@@ -48,6 +65,25 @@ public static class EmployeeFactory
             default:
                 return Gender.NB;
         }
+    }
+
+    private static string GenerateName(Gender gender)
+    {
+        Name name;
+        switch (gender)
+        {
+            case Gender.F:
+                name = (Name)UnityEngine.Random.Range(0, 100);
+                break;
+            case Gender.M:
+                name = (Name)UnityEngine.Random.Range(100, 200);
+                break;
+            default:
+                name = (Name)UnityEngine.Random.Range(0, 200);
+                break;
+        }
+
+        return name.ToString();
     }
 
     private static int GenerateStat(float mean = 50f, float stdDev = 15f)
