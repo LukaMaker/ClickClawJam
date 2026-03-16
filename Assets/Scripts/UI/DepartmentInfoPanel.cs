@@ -22,7 +22,7 @@ namespace Assets.Scripts.UI
             gameObject.SetActive(true);
             dptName.text = department.DepartmentType.ToString();
             numEmp.text = "Num. Employees: " + department.employeeCount.ToString();
-            prodMult.text = "Productivity Multiplier: " + department.prodMultiplier.ToString("F2");
+            prodMult.text = "Productivity Multiplier: " + department.GetDepartmentProd().ToString("F2");
         }
     }
 }
