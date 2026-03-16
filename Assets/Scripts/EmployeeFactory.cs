@@ -51,17 +51,23 @@ public static class EmployeeFactory
         }
     }
 
-    private static Name GenerateName(Gender gender)
+    private static string GenerateName(Gender gender)
     {
+        Name name;
         switch (gender)
         {
             case Gender.F:
-                return (Name)UnityEngine.Random.Range(0, 100);
+                name = (Name)UnityEngine.Random.Range(0, 100);
+                break;
             case Gender.M:
-                return (Name)UnityEngine.Random.Range(100, 200);
+                name = (Name)UnityEngine.Random.Range(100, 200);
+                break;
             default:
-                return (Name)UnityEngine.Random.Range(0, 200);
+                name = (Name)UnityEngine.Random.Range(0, 200);
+                break;
         }
+
+        return name.ToString();
     }
 
     private static int GenerateStat(float mean = 50f, float stdDev = 15f)
