@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Globals;
@@ -27,11 +28,26 @@ public static class EmployeeFactory
             id = id,
             name = "Employee " + id,
             personality = (PersonalityType)UnityEngine.Random.Range(0, Enum.GetValues(typeof(PersonalityType)).Length),
+            gender = GenerateGender(),
             strength = strength,
             intelligence = intelligence,
             charisma = charisma,
             salary = GenerateSalary(strength, intelligence, charisma)
         };
+    }
+
+    private static Gender GenerateGender()
+    {
+        double rand = rng.NextDouble();
+        switch (rand)
+        {
+            case double d when d < 0.49:
+                return Gender.M;
+            case double d when d > 0.51:
+                return Gender.F;
+            default:
+                return Gender.NB;
+        }
     }
 
     private static int GenerateStat(float mean = 50f, float stdDev = 15f)
