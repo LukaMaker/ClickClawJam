@@ -417,7 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e38ad7958c64814594f01ee3425afa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DepartmentTray
-  department: {fileID: 0}
+  department: {fileID: 1086311475}
   isShred: 0
   isRecycle: 0
 --- !u!54 &249870604
@@ -1979,7 +1979,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e38ad7958c64814594f01ee3425afa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DepartmentTray
-  department: {fileID: 0}
+  department: {fileID: 998494607}
   isShred: 0
   isRecycle: 0
 --- !u!54 &899145572
@@ -3138,7 +3138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e38ad7958c64814594f01ee3425afa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DepartmentTray
-  department: {fileID: 0}
+  department: {fileID: 14719066}
   isShred: 0
   isRecycle: 0
 --- !u!54 &1269092169
@@ -3201,7 +3201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e38ad7958c64814594f01ee3425afa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DepartmentTray
-  department: {fileID: 0}
+  department: {fileID: 319859181}
   isShred: 0
   isRecycle: 0
 --- !u!54 &1269092172
@@ -4279,7 +4279,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8497719854830714767, guid: 8d2b2cc5e7c238c459b80199fdfe3ae9, type: 3}
       propertyPath: m_Name
-      value: DepartmentTray (5)
+      value: Recycle
       objectReference: {fileID: 0}
     - target: {fileID: 9112832524777361426, guid: 8d2b2cc5e7c238c459b80199fdfe3ae9, type: 3}
       propertyPath: isRecycle
@@ -4863,7 +4863,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8497719854830714767, guid: 8d2b2cc5e7c238c459b80199fdfe3ae9, type: 3}
       propertyPath: m_Name
-      value: DepartmentTray (4)
+      value: Trash
       objectReference: {fileID: 0}
     - target: {fileID: 9112832524777361426, guid: 8d2b2cc5e7c238c459b80199fdfe3ae9, type: 3}
       propertyPath: isShred
