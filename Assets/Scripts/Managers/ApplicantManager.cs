@@ -12,6 +12,7 @@ namespace Assets.Scripts.Managers
 
         public Stack<Resume> currentRoundPool = new Stack<Resume>();
         public List<Resume> currentHand = new List<Resume>();
+        public List<Resume> recyclePile = new List<Resume>();
         public int processedResumesCount = 0;
 
         [SerializeField] private GameObject resume, resumeStack;
@@ -107,29 +108,33 @@ namespace Assets.Scripts.Managers
         {
             currentHand.Remove(resume);
         }
-        /*
-        public List<Resume> GetNextBatch()
+        public void AssignEmployees()
         {
-            List<Resume> batch = new List<Resume>();
-            int resumesToSpawn = Mathf.Min(GameConfig.ResumesPerBatch, currentRoundPool.Count - processedResumesCount);
-
-            for (int i = 0; i < resumesToSpawn; i++)
+            for (int i = 0; i < currentHand.Count;i++)
             {
-                batch.Add(currentRoundPool[processedResumesCount + i]);
+                if (currentHand[i] == null) continue;
+                DepartmentTray tray = currentHand[i].currentTray;
+                if (tray != null)
+                {
+                    //assign empoyee if in a tray
+                    if (!tray.isShred)
+                    {
+                        if (tray.isRecycle)
+                        {
+                            recyclePile.Add(currentHand[i]);
+                        }
+                        else
+                        {
+                            //assign to department
+                            tray.department.AssignNewEmployees(new List<Employee> { currentHand[i].Employee });
+                        }
+                    }
+                    currentHand[i].gameObject.SetActive(false);
+                    currentHand[i] = null;
+                    DrawFromPool();
+                    PositionResumes();
+                }
             }
-
-            return batch;
         }
-
-        public void ConfirmBatch()
-        {
-            int resumesSpawnedLastBatch = Mathf.Min(GameConfig.ResumesPerBatch, currentRoundPool.Count - processedResumesCount);
-            processedResumesCount += resumesSpawnedLastBatch;
-        }
-
-        public bool IsRoundComplete()
-        {
-            return processedResumesCount >= currentRoundPool.Count;
-        }*/
     }
 }

@@ -63,18 +63,8 @@ namespace Assets.Scripts.UI
         }
 
         private void OnConfirmBatchClicked()
-        {/*
-            ApplicantManager.Instance.ConfirmBatch();
-
-            if (ApplicantManager.Instance.IsRoundComplete())
-            {
-                confirmBatchButton.interactable = false;
-                confirmRoundButton.interactable = true;
-            }
-            else
-            {
-                SpawnNextBatch();
-            }*/
+        {
+            ApplicantManager.Instance.AssignEmployees();
         }
 
         private void OnConfirmRoundClicked()
