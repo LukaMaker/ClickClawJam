@@ -11,15 +11,15 @@ public struct StatWeight
 
 public class BaseDepartment : MonoBehaviour
 {
-    [SerializeField] private Globals.Department DepartmentType;
+    [SerializeField] public Globals.Department DepartmentType;
     [SerializeField] private StatWeight[] DesiredStats = new StatWeight[2];
     
     [SerializeField] private GameObject employeePrefab;
     [SerializeField] private Collider areaBounds;
 
-    private int employeeCount;
-    private float baseProd;
-    private float prodMultiplier;
+    public int employeeCount { get; private set; }
+    public float baseProd;
+    public float prodMultiplier;
     private List<Employee> assignedEmployees = new List<Employee>();
     private HashSet<Employee> spawnedEmployees = new HashSet<Employee>();
 
