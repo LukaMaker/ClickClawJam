@@ -86,7 +86,9 @@ public static class EmployeeFactory
                 break;
         }
 
-        return name.ToString();
+        string fullname = name.ToString() + UnityEngine.Random.Range('A', 'Z' + 1);
+
+        return fullname;
     }
 
     private static int GenerateStat(float mean = 50f, float stdDev = 15f)
