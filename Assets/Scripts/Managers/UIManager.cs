@@ -25,8 +25,9 @@ public class UIManager : MonoBehaviour
 
     void HandleGameStateChanged(GameState newState)
     {
-        hiringCanvasUI.gameObject.SetActive(newState == GameState.Hiring);
-        observingCanvasUI.gameObject.SetActive(newState == GameState.Observing);
+        hiringCanvasUI.gameObject.SetActive(true);
+        observingCanvasUI.gameObject.SetActive(true);
+        
         gameOverUI.gameObject.SetActive(newState == GameState.GameOver);
 
         switch (newState)
@@ -49,8 +50,8 @@ public class UIManager : MonoBehaviour
     {
         if (GameManager.Instance.currentState == GameState.Hiring)
         {
-            hiringCanvasUI.gameObject.SetActive(!isViewingWarehouse);
-            observingCanvasUI.gameObject.SetActive(isViewingWarehouse);
+            hiringCanvasUI.gameObject.SetActive(true);
+            observingCanvasUI.gameObject.SetActive(true);
         }
     }
 }

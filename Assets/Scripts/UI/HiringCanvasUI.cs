@@ -19,17 +19,48 @@ namespace Assets.Scripts.UI
         [SerializeField] private Button confirmRoundButton;
 
         private List<GameObject> activeResumeUIElements = new List<GameObject>();
+        private CanvasGroup canvasGroup;
+        private bool isViewingWarehouse;
 
         private void Awake()
         {
             Instance = this;
 
+            canvasGroup = GetComponent<CanvasGroup>();
+            if (canvasGroup == null)
+            {
+                canvasGroup = gameObject.AddComponent<CanvasGroup>();
+            }
+
             confirmBatchButton.onClick.AddListener(OnConfirmBatchClicked);
             confirmRoundButton.onClick.AddListener(OnConfirmRoundClicked);
         }
 
+        private void OnEnable()
+        {
+            EventBus.OnViewChanged += HandleViewChanged;
+        }
+
+        private void OnDisable()
+        {
+            EventBus.OnViewChanged -= HandleViewChanged;
+        }
+
+        private void HandleViewChanged(bool viewingWarehouse)
+        {
+            isViewingWarehouse = viewingWarehouse;
+        }
+
         private void Update()
         {
+            if (canvasGroup != null)
+            {
+                bool shouldBeActive = !isViewingWarehouse && GameManager.Instance.currentState == GameState.Hiring;
+                canvasGroup.interactable = shouldBeActive;
+                canvasGroup.blocksRaycasts = shouldBeActive;
+                canvasGroup.alpha = shouldBeActive ? 1f : 0f;
+            }
+
             if (confirmBatchButton.gameObject.activeSelf)
             {
                 confirmBatchButton.interactable = (resumeSlotsParent != null && resumeSlotsParent.childCount == 0);
