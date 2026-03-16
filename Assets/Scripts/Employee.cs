@@ -4,7 +4,7 @@ using static Globals;
 public class Employee
 {
     public int id;
-    public string name;
+    public Name name;
     public PersonalityType personality;
     public Gender gender;
     public int salary;

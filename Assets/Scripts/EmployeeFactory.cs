@@ -22,13 +22,14 @@ public static class EmployeeFactory
         int strength = GenerateStat();
         int intelligence = GenerateStat();
         int charisma = GenerateStat();
+        Gender gender = GenerateGender();
 
         return new Employee()
         {
             id = id,
-            name = "Employee " + id,
             personality = (PersonalityType)UnityEngine.Random.Range(0, Enum.GetValues(typeof(PersonalityType)).Length),
-            gender = GenerateGender(),
+            gender = gender,
+            name = GenerateName(gender),
             strength = strength,
             intelligence = intelligence,
             charisma = charisma,
@@ -47,6 +48,19 @@ public static class EmployeeFactory
                 return Gender.F;
             default:
                 return Gender.NB;
+        }
+    }
+
+    private static Name GenerateName(Gender gender)
+    {
+        switch (gender)
+        {
+            case Gender.F:
+                return (Name)UnityEngine.Random.Range(0, 100);
+            case Gender.M:
+                return (Name)UnityEngine.Random.Range(100, 200);
+            default:
+                return (Name)UnityEngine.Random.Range(0, 200);
         }
     }
 
