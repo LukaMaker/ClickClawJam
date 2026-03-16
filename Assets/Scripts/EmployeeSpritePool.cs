@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EmployeeSpritePool", menuName = "Employee/Sprite Pool")]
+[CreateAssetMenu(fileName = "EmployeeSpritePool", menuName = "Employee/SpritePool")]
 public class EmployeeSpritePool : ScriptableObject
 {
     public Sprite[] bodies;
@@ -8,5 +8,6 @@ public class EmployeeSpritePool : ScriptableObject
     public Sprite[] noses;
     public Sprite[] hairs;
     public Sprite[] accessories;
-    public Sprite[] hairColours;
+    public Color[] hairColours;
+    
 }
