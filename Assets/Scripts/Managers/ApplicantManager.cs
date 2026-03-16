@@ -103,6 +103,10 @@ namespace Assets.Scripts.Managers
             currentHand.Add(currentRoundPool.Pop());
             return true;
         }
+        public void RemoveFromHand(Resume resume)
+        {
+            currentHand.Remove(resume);
+        }
         /*
         public List<Resume> GetNextBatch()
         {
