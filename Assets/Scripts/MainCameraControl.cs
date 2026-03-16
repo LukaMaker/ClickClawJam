@@ -8,6 +8,10 @@ public class MainCameraControl : MonoBehaviour
     private float animationSpeed = 0.2f;
     private float rotationalAngle = 50f;
 
+    private void Awake()
+    {
+        GetComponent<AudioSource>().Play();
+    }
     private void OnEnable()
     {
         EventBus.OnGameStateChanged += HandleGameStateChanged;
