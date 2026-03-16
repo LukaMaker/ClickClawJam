@@ -6,7 +6,7 @@ public class Employee
     public int id;
     public string name;
     public PersonalityType personality;
-    public float salary;
+    public int salary;
     public float strength;
     public float intelligence;
     public float charisma;
@@ -15,4 +15,9 @@ public class Employee
     public float earningsMultiplier = 1f;
     public bool isFighting = false;
     public bool isFired = false;
+
+    public Sprite getPortrait()
+    {
+        return null;
+    }
 }
