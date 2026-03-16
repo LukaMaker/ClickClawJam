@@ -14,14 +14,13 @@ public class Bootstrap : MonoBehaviour
 
     private void InitialiseWorkers()
     {
-        Globals.GlobalWorkerPool = new Dictionary<Employee, Resume>();
+        Globals.GlobalWorkerPool = new List<Employee>();
         
         List<Employee> employees = EmployeeFactory.CreateGlobalPool(GameConfig.NumWorkers);
-        Resume[] resumes = ResumeFactory.CreateFromEmployees(employees.ToArray(), resumeContainer.transform);
 
         for (int i = 0; i < employees.Count; i++)
         {
-            Globals.GlobalWorkerPool.Add(employees[i], resumes[i]);
+            Globals.GlobalWorkerPool.Add(employees[i]);
         }
     }
 }

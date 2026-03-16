@@ -10,8 +10,12 @@ namespace Assets.Scripts.Managers
     {
         public static ApplicantManager Instance { get; private set; }
 
-        public List<Resume> currentRoundPool = new List<Resume>();
+        public Stack<Resume> currentRoundPool = new Stack<Resume>();
+        public List<Resume> currentHand = new List<Resume>();
         public int processedResumesCount = 0;
+
+        [SerializeField] private GameObject resume, resumeStack;
+        [SerializeField] private List<Transform> resumeHolders = new List<Transform>();
 
         private void Awake()
         {
@@ -45,21 +49,61 @@ namespace Assets.Scripts.Managers
 
         public void HandleHiringRound()
         {
-            currentRoundPool.Clear();
-            processedResumesCount = 0;
+            DrawPool(Globals.GlobalWorkerPool, GameConfig.ResumesPerRound);
 
-            List<Resume> tempGlobalPool = new List<Resume>(Globals.GlobalWorkerPool.Values);
-
-            for (int i = 0; i < GameConfig.ResumesPerRound && tempGlobalPool.Count > 0; i++)
+            for (int i = 0; i < GameConfig.ResumesPerBatch; i++)
             {
-                int randomIndex = Random.Range(0, tempGlobalPool.Count);
-                currentRoundPool.Add(tempGlobalPool[randomIndex]);
-                tempGlobalPool.RemoveAt(randomIndex);
+                DrawFromPool();
             }
-
+            PositionResumes();
             HiringCanvasUI.Instance.StartNewRoundUI();
         }
+        public void PositionResumes()
+        {
+            for (int i = 0; i < currentHand.Count; i ++)
+            {
+                currentHand[i].transform.parent = resumeHolders[i];
+                currentHand[i].transform.localPosition = Vector3.zero;
+            }
+        }
 
+        public void DrawPool(List<Employee> employees, int pileSize)
+        {
+            //draws initial pool of 10 resumes
+            currentRoundPool = new Stack<Resume>();
+            while (employees.Count > 0 && currentRoundPool.Count < pileSize)
+            {
+                Employee randomEmployee;
+
+                int index = Random.Range(0, employees.Count - 1);
+                randomEmployee = employees[index];
+
+                Resume nextResume = Instantiate(resume, Vector3.zero, Quaternion.identity, resumeStack.transform).GetComponent<Resume>();
+                nextResume.Initialize(randomEmployee);
+                currentRoundPool.Push(nextResume);
+
+                employees.RemoveAt(index);
+            }
+        }
+        public bool DrawFromPool()
+        {
+            if (currentRoundPool.Count == 0)
+            {
+                return false;
+            }
+            //add to empty hand slot first
+            for (int i = 0; i < currentHand.Count; i++)
+            {
+                if (currentHand[i] == null)
+                {
+                    currentHand[i] = currentRoundPool.Pop();
+                    return true;
+                }
+            }
+            currentHand.Add(currentRoundPool.Pop());
+            return true;
+        }
+        /*
         public List<Resume> GetNextBatch()
         {
             List<Resume> batch = new List<Resume>();
@@ -82,6 +126,6 @@ namespace Assets.Scripts.Managers
         public bool IsRoundComplete()
         {
             return processedResumesCount >= currentRoundPool.Count;
-        }
+        }*/
     }
 }

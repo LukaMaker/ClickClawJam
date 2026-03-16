@@ -18,7 +18,8 @@ public class BaseDepartment : MonoBehaviour
     [SerializeField] private Collider areaBounds;
 
     private int employeeCount;
-    private float productivity;
+    private float baseProd;
+    private float prodMultiplier;
     private List<Employee> assignedEmployees = new List<Employee>();
     private HashSet<Employee> spawnedEmployees = new HashSet<Employee>();
 
@@ -34,7 +35,18 @@ public class BaseDepartment : MonoBehaviour
 
     public void AssignNewEmployees(List<Employee> newEmployees)
     {
-        assignedEmployees.AddRange(newEmployees);
+        foreach (Employee employee in newEmployees)
+        {
+            AssignEmployee(employee);
+        }
+    }
+
+    private void AssignEmployee(Employee newEmployee)
+    {
+        assignedEmployees.Add(newEmployee);
+        float newEmpProdMult = Globals.ProductivityMatrix[newEmployee.personality];
+        prodMultiplier = ((prodMultiplier * employeeCount) + newEmpProdMult)/(employeeCount + 1);
+        employeeCount += 1;
     }
 
     private void HandleHireRoundEnded(Dictionary<BaseDepartment, List<Employee>> hiredEmployees)
