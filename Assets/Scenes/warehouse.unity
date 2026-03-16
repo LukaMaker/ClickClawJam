@@ -486,6 +486,7 @@ GameObject:
   - component: {fileID: 294617359}
   - component: {fileID: 294617358}
   - component: {fileID: 294617362}
+  - component: {fileID: 294617363}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -623,6 +624,103 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 904268adf80fff34f857aea39d06999b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainCameraControl
+--- !u!82 &294617363
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294617357}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 35beaa4e69485254e98d308f405c2925, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &306812995
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1936,6 +2034,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1719432757}
     m_Modifications:
+    - target: {fileID: 746823706921642383, guid: ec4c9a437f2a6984cb69971b1c6f637f, type: 3}
+      propertyPath: m_text
+      value: 'Scaling:
+
+        100% Strength
+
+        20% Charisma'
+      objectReference: {fileID: 0}
     - target: {fileID: 6474839320067710652, guid: ec4c9a437f2a6984cb69971b1c6f637f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -408
@@ -2050,6 +2156,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1719432757}
     m_Modifications:
+    - target: {fileID: 746823706921642383, guid: ec4c9a437f2a6984cb69971b1c6f637f, type: 3}
+      propertyPath: m_text
+      value: 'Scaling:
+
+        50% Strength
+
+        50% Intelligence
+
+        20%
+        Charisma'
+      objectReference: {fileID: 0}
     - target: {fileID: 6474839320067710652, guid: ec4c9a437f2a6984cb69971b1c6f637f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1089
@@ -2164,6 +2281,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1719432757}
     m_Modifications:
+    - target: {fileID: 746823706921642383, guid: ec4c9a437f2a6984cb69971b1c6f637f, type: 3}
+      propertyPath: m_text
+      value: 'Scaling:
+
+        100% Intelligence
+
+        40% Charisma'
+      objectReference: {fileID: 0}
     - target: {fileID: 6474839320067710652, guid: ec4c9a437f2a6984cb69971b1c6f637f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -788
@@ -3136,11 +3261,6 @@ RectTransform:
   m_AnchoredPosition: {x: 591, y: 443}
   m_SizeDelta: {x: 360, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!224 &951797391 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4616969173054048773, guid: 0d26e86f155fa1549913b47d79d86629, type: 3}
-  m_PrefabInstance: {fileID: 8439699551173382088}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &998494602
 GameObject:
   m_ObjectHideFlags: 0
@@ -3268,10 +3388,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BaseDepartment
   DepartmentType: 3
   DesiredStats:
-  - Stat: 0
-    Weighting: 0
-  - Stat: 0
-    Weighting: 0
+  - Stat: 1
+    Weighting: 1
+  - Stat: 2
+    Weighting: 0.4
   employeePrefab: {fileID: 3701396473920152676, guid: 66015c0876ff85049a9e57d3eefa0860, type: 3}
   areaBounds: {fileID: 998494603}
   baseProd: 0
@@ -3797,6 +3917,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1719432757}
     m_Modifications:
+    - target: {fileID: 746823706921642383, guid: ec4c9a437f2a6984cb69971b1c6f637f, type: 3}
+      propertyPath: m_text
+      value: 'Scaling:
+
+        20% Intelligence
+
+        100% Charisma'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4482042078724893020, guid: ec4c9a437f2a6984cb69971b1c6f637f, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6474839320067710652, guid: ec4c9a437f2a6984cb69971b1c6f637f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 355
@@ -5668,7 +5800,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.227, y: 0.518}
+  m_AnchoredPosition: {x: 0.04, y: 0.518}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1697481028
@@ -5691,7 +5823,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BIN
+  m_text: WAITLIST
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7505,11 +7637,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 899348707}
     m_Modifications:
-    - target: {fileID: 4064286284648831056, guid: 0a93e4e8711499d44bebb3bb28767cea, type: 3}
-      propertyPath: m_Name
-      value: FrontAlertButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636762280073139723, guid: 0a93e4e8711499d44bebb3bb28767cea, type: 3}
     - target: {fileID: 3797970827286578582, guid: 0d26e86f155fa1549913b47d79d86629, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -7517,6 +7644,14 @@ PrefabInstance:
     - target: {fileID: 4616969173054048773, guid: 0d26e86f155fa1549913b47d79d86629, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064286284648831056, guid: 0a93e4e8711499d44bebb3bb28767cea, type: 3}
+      propertyPath: m_Name
+      value: FrontAlertButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636762280073139723, guid: 0a93e4e8711499d44bebb3bb28767cea, type: 3}
+      propertyPath: 
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4636762280073139723, guid: 0a93e4e8711499d44bebb3bb28767cea, type: 3}
       propertyPath: m_Pivot.y

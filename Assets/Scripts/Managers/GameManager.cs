@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour
                     department.SpawnEmployees();
                     FightManager.Instance.HandleFightPhase(department);
                 }
-                FightManager.Instance.HandleFightPhase(fights);
                 break;
         }
     }
