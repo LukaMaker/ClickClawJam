@@ -83,7 +83,13 @@ public class BaseDepartment : MonoBehaviour
             }
         }
     }
-
+    public void SpawnEmployees()
+    {
+        foreach (Employee employee in assignedEmployees)
+        {
+            SpawnEmployee(employee);
+        }
+    }
     private void SpawnEmployee(Employee employee)
     {
         Bounds bounds = areaBounds.bounds;

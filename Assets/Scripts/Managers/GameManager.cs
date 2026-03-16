@@ -5,6 +5,7 @@ using Assets.Scripts.Managers;
 // is called and prepares resume data from the Globals.GlobalWorkerPool that contains all the "cards" in the game basically.
 public class GameManager : MonoBehaviour
 {
+    public BaseDepartment[] departments = new BaseDepartment[4];
     public static GameManager Instance { get; private set; }
     public GameState currentState { get; private set; }
     public int currentRound { get; private set; } = 1;
@@ -33,6 +34,13 @@ public class GameManager : MonoBehaviour
         if (newState == GameState.Hiring)
         {
             ApplicantManager.Instance.HandleHiringRound();
+        }
+        if (newState == GameState.Observing)
+        {
+            foreach (BaseDepartment department in departments)
+            {
+                department.SpawnEmployees();
+            }
         }
     }
 
