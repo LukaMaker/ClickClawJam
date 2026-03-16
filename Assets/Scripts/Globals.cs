@@ -17,16 +17,16 @@ public static class Globals
     {
         Psycho,
         Nerd,
-        Gossips,
-        Slackers
+        Gossip,
+        Slacker
     }
 
     public static Dictionary<PersonalityType, string> PersonalityDesc = new()
     {
         { PersonalityType.Psycho,   "Brings in results, but impossible to work with." },
         { PersonalityType.Nerd,     "Knows everything, avoids interaction if possible." },
-        { PersonalityType.Gossips,  "Spends more time annoying people than working." },
-        { PersonalityType.Slackers, "Just here for the paycheck. They'd rather go home." }
+        { PersonalityType.Gossip,  "Spends more time annoying people than working." },
+        { PersonalityType.Slacker, "Just here for the paycheck. They'd rather go home." }
     };
 
     public enum Gender
@@ -114,8 +114,8 @@ public static class Globals
             {
                 { PersonalityType.Psycho,   0.15f },
                 { PersonalityType.Nerd,         0.10f },
-                { PersonalityType.Gossips,  0.12f },
-                { PersonalityType.Slackers,      0.05f }
+                { PersonalityType.Gossip,  0.12f },
+                { PersonalityType.Slacker,      0.05f }
             }
         },
         {
@@ -123,26 +123,26 @@ public static class Globals
             {
                 { PersonalityType.Psycho,   0.08f },
                 { PersonalityType.Nerd,         0.03f },
-                { PersonalityType.Gossips,  0.06f },
-                { PersonalityType.Slackers,      0.01f }
+                { PersonalityType.Gossip,  0.06f },
+                { PersonalityType.Slacker,      0.01f }
             }
         },
         {
-            PersonalityType.Gossips, new Dictionary<PersonalityType, float>
+            PersonalityType.Gossip, new Dictionary<PersonalityType, float>
             {
                 { PersonalityType.Psycho,   0.12f },
                 { PersonalityType.Nerd,         0.07f },
-                { PersonalityType.Gossips,  0.10f },
-                { PersonalityType.Slackers,      0.04f }
+                { PersonalityType.Gossip,  0.10f },
+                { PersonalityType.Slacker,      0.04f }
             }
         },
         {
-            PersonalityType.Slackers, new Dictionary<PersonalityType, float>
+            PersonalityType.Slacker, new Dictionary<PersonalityType, float>
             {
                 { PersonalityType.Psycho,   0.03f },
                 { PersonalityType.Nerd,         0.02f },
-                { PersonalityType.Gossips,  0.04f },
-                { PersonalityType.Slackers,      0.01f }
+                { PersonalityType.Gossip,  0.04f },
+                { PersonalityType.Slacker,      0.01f }
             }
         }
     };
@@ -151,7 +151,7 @@ public static class Globals
     {
         { PersonalityType.Psycho,   4.0f },
         { PersonalityType.Nerd,         2.8f },
-        { PersonalityType.Gossips,  1.5f },
-        { PersonalityType.Slackers,      0.4f }
+        { PersonalityType.Gossip,  1.5f },
+        { PersonalityType.Slacker,      0.4f }
     };
 }
