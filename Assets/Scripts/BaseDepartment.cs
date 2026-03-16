@@ -23,7 +23,7 @@ public class BaseDepartment : MonoBehaviour
     public float baseProd;
     public float prodMultiplier;
     public int totalSalary;
-    private List<Employee> assignedEmployees = new List<Employee>();
+    private List<Employee> assignedEmployees = new();
     private List<GameObject> spawnedEmployees = new List<GameObject>();
 
     private void OnEnable()
@@ -34,6 +34,11 @@ public class BaseDepartment : MonoBehaviour
     private void OnDisable()
     {
         EventBus.OnHireRoundEnded -= HandleHireRoundEnded;
+    }
+
+    public List<Employee> GetEmployees()
+    {
+        return assignedEmployees;
     }
 
     public void RemoveEmployee(Employee firedEmployee)

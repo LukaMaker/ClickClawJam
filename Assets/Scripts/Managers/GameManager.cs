@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using Assets.Scripts.Managers;
 
 // controls core game loop/state machine. when in GameState.Hiring, ApplicantManager.HandleHiringRound()
@@ -31,16 +31,23 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Current round: {currentRound} of {GameConfig.NumRounds} rounds");
         EventBus.StateChanged(newState);
 
+        switch (newState)
+        {
+            case GameState.Hiring:
+                ApplicantManager.Instance.HandleHiringRound();
+                break;
+            case GameState.Observing:
+                foreach (BaseDepartment department in departments)
+                {
+                    department.SpawnEmployees();
+                    FightManager.Instance.HandleFightPhase(department);
+                }
+                break;
+        }
+
         if (newState == GameState.Hiring)
         {
             ApplicantManager.Instance.HandleHiringRound();
-        }
-        if (newState == GameState.Observing)
-        {
-            foreach (BaseDepartment department in departments)
-            {
-                department.SpawnEmployees();
-            }
         }
     }
 

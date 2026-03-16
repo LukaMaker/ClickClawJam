@@ -6,7 +6,19 @@ using System.Linq;
 
 public class FightManager : MonoBehaviour
 {
-    public List<Fight> GenerateFights(List<Employee> employees, BaseDepartment department, int maxFights)
+    public static FightManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    public void HandleFightPhase(BaseDepartment department)
+    {
+        List<Fight> fights = GenerateFights(department.GetEmployees(), department);
+    }
+
+    public List<Fight> GenerateFights(List<Employee> employees, BaseDepartment department, int maxFights = 2)
     {
         List<Fight> fights = new();
 
