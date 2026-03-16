@@ -26,6 +26,10 @@ public class DepartmentTray : MonoBehaviour
             prediction.enabled = false;
         }
     }
+    public void ClearEmployees()
+    {
+        employees.Clear();
+    }
     private void OnTriggerStay(Collider other)
     {
         if (other.GetComponent<Resume>())
