@@ -31,6 +31,7 @@ public static class EmployeeFactory
 
     private static Employee CreateEmployee(int id)
     {
+        PersonalityType type = (PersonalityType)UnityEngine.Random.Range(0, Enum.GetValues(typeof(PersonalityType)).Length);
         int strength = GenerateStat();
         int intelligence = GenerateStat();
         int charisma = GenerateStat();
@@ -38,7 +39,8 @@ public static class EmployeeFactory
 
         Employee e = new Employee();
         e.id = id;
-        e.personality = (PersonalityType)UnityEngine.Random.Range(0, Enum.GetValues(typeof(PersonalityType)).Length);
+        e.personality = type;
+        e.description = Globals.PersonalityDesc[type];
         e.gender = gender;
         e.name = GenerateName(gender);
         e.body = EmployeeSpritePool.Instance.GetRandomBody(gender, false);
