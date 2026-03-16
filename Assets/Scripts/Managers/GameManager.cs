@@ -38,11 +38,9 @@ public class GameManager : MonoBehaviour
                 ApplicantManager.Instance.HandleHiringRound();
                 break;
             case GameState.Observing:
-                List<Fight> fights = new();
                 foreach (BaseDepartment department in departments)
                 {
                     department.SpawnEmployees();
-                    fights.AddRange(FightManager.Instance.GenerateFights(department));
                     FightManager.Instance.HandleFightPhase(department);
                 }
                 break;

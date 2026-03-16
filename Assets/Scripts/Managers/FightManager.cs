@@ -16,6 +16,14 @@ public class FightManager : MonoBehaviour
     public void HandleFightPhase(BaseDepartment department)
     {
         List<Fight> fights = GenerateFights(department);
+        if (fights.Count > 0)
+        {
+            Debug.Log($"Created {fights.Count} fights for department: {department.gameObject.name}");
+        }
+        foreach (var fight in fights)
+        {
+            department.pendingFights.Enqueue(fight);
+        }
     }
 
     public List<Fight> GenerateFights(BaseDepartment department, int maxFights = 2)
@@ -63,11 +71,17 @@ public class FightManager : MonoBehaviour
         {
             case Globals.FightOutcome.InstTerminated:
                 // remove instigator
-                department.RemoveEmployee(instigator);
+                if (department.GetEmployees().Contains(instigator))
+                {
+                    department.RemoveEmployee(instigator);
+                }
                 break;
             case Globals.FightOutcome.TargTerminated:
                 // remove target
-                department.RemoveEmployee(target);
+                if (department.GetEmployees().Contains(target))
+                {
+                    department.RemoveEmployee(target);
+                }
                 break;
         }
     }
