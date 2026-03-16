@@ -81,4 +81,17 @@ public class BaseDepartment : MonoBehaviour
         wanderer.walkArea = areaBounds;
         spawnedEmployees.Add(employee);
     }
+    public int GetDepartmentGross()
+    {
+        int gross = 0;
+        float totalStr = 0, totalInt = 0, totalChr = 0;
+        foreach (Employee emp in assignedEmployees)
+        {
+            totalStr += emp.strength;
+            totalInt += emp.intelligence;
+            totalChr += emp.charisma;
+        }
+        //need to multiply by desired stats scaling
+        return gross;
+    }
 }
