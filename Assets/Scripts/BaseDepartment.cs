@@ -24,7 +24,7 @@ public class BaseDepartment : MonoBehaviour
     public float prodMultiplier;
     public int totalSalary;
     private List<Employee> assignedEmployees = new List<Employee>();
-    private HashSet<Employee> spawnedEmployees = new HashSet<Employee>();
+    private List<GameObject> spawnedEmployees = new List<GameObject>();
 
     private void OnEnable()
     {
@@ -40,7 +40,6 @@ public class BaseDepartment : MonoBehaviour
     {
         //remove employee from lists
         assignedEmployees.Remove(firedEmployee);
-        spawnedEmployees.Remove(firedEmployee);
 
         // remove employee prod multiplier from average
         float empProdMult = Globals.ProductivityMatrix[firedEmployee.personality];
@@ -72,7 +71,7 @@ public class BaseDepartment : MonoBehaviour
 
     private void HandleHireRoundEnded(Dictionary<BaseDepartment, List<Employee>> hiredEmployees)
     {
-        if (hiredEmployees.TryGetValue(this, out List<Employee> newEmployees))
+        /*if (hiredEmployees.TryGetValue(this, out List<Employee> newEmployees))
         {
             foreach (var employee in newEmployees)
             {
@@ -81,10 +80,15 @@ public class BaseDepartment : MonoBehaviour
                     SpawnEmployee(employee);
                 }
             }
-        }
+        }*/
     }
     public void SpawnEmployees()
     {
+        foreach (GameObject employee in spawnedEmployees)
+        {
+            Destroy(employee);
+        }
+        spawnedEmployees.Clear();
         foreach (Employee employee in assignedEmployees)
         {
             SpawnEmployee(employee);
@@ -106,7 +110,7 @@ public class BaseDepartment : MonoBehaviour
             wanderer = newEmployeeObj.AddComponent<EmployeeWander>();
 
         wanderer.walkArea = areaBounds;
-        spawnedEmployees.Add(employee);
+        spawnedEmployees.Add(newEmployeeObj);
 
         //set visuals
         newEmployeeObj.transform.GetChild(0).GetComponent<RawImage>().texture = employee.body;
