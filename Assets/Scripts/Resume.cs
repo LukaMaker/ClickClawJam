@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class Resume : MonoBehaviour
 {
     public Employee Employee { get; private set; }
+    public DepartmentTray currentTray = null;
     [SerializeField] private Image portrait, strength, intelligence, charisma;
     [SerializeField] private TextMeshProUGUI name, salary, personality;
     private float statWidth = 60, statHeight = 5; //just for bar chart UI

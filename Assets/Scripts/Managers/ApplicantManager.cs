@@ -12,6 +12,7 @@ namespace Assets.Scripts.Managers
 
         public Stack<Resume> currentRoundPool = new Stack<Resume>();
         public List<Resume> currentHand = new List<Resume>();
+        public List<Employee> recyclePile = new List<Employee>();
         public int processedResumesCount = 0;
 
         [SerializeField] private GameObject resume, resumeStack;
@@ -62,8 +63,11 @@ namespace Assets.Scripts.Managers
         {
             for (int i = 0; i < currentHand.Count; i ++)
             {
-                currentHand[i].transform.parent = resumeHolders[i];
-                currentHand[i].transform.localPosition = Vector3.zero;
+                if (currentHand[i] != null)
+                {
+                    currentHand[i].transform.parent = resumeHolders[i];
+                    currentHand[i].transform.localPosition = Vector3.zero;
+                }
             }
         }
 
@@ -107,29 +111,61 @@ namespace Assets.Scripts.Managers
         {
             currentHand.Remove(resume);
         }
-        /*
-        public List<Resume> GetNextBatch()
+        public void AssignEmployees()
         {
-            List<Resume> batch = new List<Resume>();
-            int resumesToSpawn = Mathf.Min(GameConfig.ResumesPerBatch, currentRoundPool.Count - processedResumesCount);
-
-            for (int i = 0; i < resumesToSpawn; i++)
+            for (int i = 0; i < currentHand.Count;i++)
             {
-                batch.Add(currentRoundPool[processedResumesCount + i]);
+                if (currentHand[i] == null) continue;
+                DepartmentTray tray = currentHand[i].currentTray;
+                if (tray != null)
+                {
+                    //assign empoyee if in a tray
+                    if (!tray.isShred)
+                    {
+                        if (tray.isRecycle)
+                        {
+                            recyclePile.Add(currentHand[i].Employee);
+                        }
+                        else
+                        {
+                            //assign to department
+                            tray.department.AssignNewEmployees(new List<Employee> { currentHand[i].Employee });
+                        }
+                    }
+                    Destroy(currentHand[i].gameObject);
+                    currentHand[i] = null;
+                    DrawFromPool();
+                    PositionResumes();
+                }
             }
-
-            return batch;
         }
-
-        public void ConfirmBatch()
+        public bool isEmpty()
         {
-            int resumesSpawnedLastBatch = Mathf.Min(GameConfig.ResumesPerBatch, currentRoundPool.Count - processedResumesCount);
-            processedResumesCount += resumesSpawnedLastBatch;
+            bool handEmpty = true;
+            for (int i = 0; i < currentHand.Count; i++)
+            {
+                if (currentHand[i] != null)
+                {
+                    handEmpty = false;
+                }
+            }
+            if (handEmpty && currentRoundPool.Count == 0) return true;
+            return false;
         }
-
-        public bool IsRoundComplete()
+        public void EndRound()
         {
-            return processedResumesCount >= currentRoundPool.Count;
-        }*/
+            //shuffles back all resumes from stack and recycle pile into global pool
+            while (currentRoundPool.Count > 0)
+            {
+                Resume r = currentRoundPool.Pop();
+                Globals.GlobalWorkerPool.Add(r.Employee);
+                Destroy(r.gameObject); //clean up object after
+            }
+            foreach (Employee employee in recyclePile)
+            {
+                Globals.GlobalWorkerPool.Add(employee);
+            }
+            recyclePile = new List<Employee>();
+        }
     }
 }

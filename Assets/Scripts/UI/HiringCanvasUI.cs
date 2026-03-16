@@ -40,83 +40,25 @@ namespace Assets.Scripts.UI
         {
             confirmRoundButton.interactable = false;
             confirmBatchButton.interactable = true;
-
-            //SpawnNextBatch();
-        }
-
-        private void SpawnNextBatch()
-        {/*
-            ClearActiveResumes();
-
-            List<Resume> currentBatch = ApplicantManager.Instance.GetNextBatch();
-
-            foreach (Resume assignedResume in currentBatch)
-            {
-                GameObject resumeObject = Instantiate(resumePrefab, resumeSlotsParent);
-                DraggableItem draggable = resumeObject.GetComponent<DraggableItem>();
-                if (draggable != null)
-                {
-                    draggable.AssignedResume = assignedResume;
-                }
-                activeResumeUIElements.Add(resumeObject);
-            }*/
         }
 
         private void OnConfirmBatchClicked()
-        {/*
-            ApplicantManager.Instance.ConfirmBatch();
-
-            if (ApplicantManager.Instance.IsRoundComplete())
+        {
+            ApplicantManager.Instance.AssignEmployees();
+            if (ApplicantManager.Instance.isEmpty())
             {
-                confirmBatchButton.interactable = false;
                 confirmRoundButton.interactable = true;
             }
-            else
-            {
-                SpawnNextBatch();
-            }*/
         }
 
         private void OnConfirmRoundClicked()
         {
             Debug.Log("Round complete");
-            
-            Dictionary<BaseDepartment, List<Employee>> hiredEmployees = new Dictionary<BaseDepartment, List<Employee>>();
-            UISlot[] allSlots = FindObjectsOfType<UISlot>();
 
-            foreach (UISlot slot in allSlots)
-            {
-                if (slot.department != null && slot.slottedItems.Count > 0)
-                {
-                    if (!hiredEmployees.ContainsKey(slot.department))
-                    {
-                        hiredEmployees[slot.department] = new List<Employee>();
-                    }
-
-                    foreach (DraggableItem item in slot.slottedItems)
-                    {
-                        if (item.AssignedResume != null && item.AssignedResume.Employee != null)
-                        {
-                            hiredEmployees[slot.department].Add(item.AssignedResume.Employee);
-                        }
-                    }
-                }
-            }
-
-            EventBus.HireRoundEnded(hiredEmployees);
+            ApplicantManager.Instance.EndRound();
 
             confirmRoundButton.interactable = false;
-            ClearActiveResumes();
             GameManager.Instance.NextState();
-        }
-
-        private void ClearActiveResumes()
-        {
-            foreach (var uiElement in activeResumeUIElements)
-            {
-                if (uiElement != null) Destroy(uiElement);
-            }
-            activeResumeUIElements.Clear();
         }
     }
 }
