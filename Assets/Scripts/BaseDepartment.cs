@@ -163,7 +163,20 @@ public class BaseDepartment : MonoBehaviour
     public int GetDepartmentGross()
     {
         float totalProd = GetDepartmentProd();
-        int gross = (int)totalProd*GameConfig.ProductivityRatio;
+        int gross = (int)(totalProd*GameConfig.ProductivityRatio);
         return gross;
+    }
+    public int GetDepartmentSalary()
+    {
+        int salary = 0;
+        foreach(Employee emp in assignedEmployees)
+        {
+            salary += emp.salary;
+        }
+        return salary;
+    }
+    public int GetNetMoney()
+    {
+        return GetDepartmentGross() - GetDepartmentSalary();
     }
 }

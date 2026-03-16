@@ -15,7 +15,25 @@ public class QuarterlyReport : MonoBehaviour
         }
         for (int i = 0; i < salary.childCount; i++)
         {
-            //salary.GetChild(i).GetComponent<TextMeshProUGUI>().text = "-$" + departments[i].GetDepartmentSalary().ToString();
+            salary.GetChild(i).GetComponent<TextMeshProUGUI>().text = "-$" + departments[i].GetDepartmentSalary().ToString();
         }
+        for (int i = 0; i < net.childCount; i++)
+        {
+            if (departments[i].GetNetMoney() >= 0)
+            {
+                net.GetChild(i).GetComponent<TextMeshProUGUI>().text = "$" + departments[i].GetNetMoney().ToString();
+            } else
+            {
+                net.GetChild(i).GetComponent<TextMeshProUGUI>().text = "-$" + (departments[i].GetNetMoney()*-1).ToString();
+            }
+        }
+        int profit = 0;
+        foreach (BaseDepartment baseDepartment in departments)
+        {
+            profit += baseDepartment.GetNetMoney();
+        }
+        quarterlyProfit.text = "QUARTERLY PROFIT: $" + profit.ToString();
+        GameManager.Instance.AddProfit(profit);
+        runningProfit.text = "RUNNING PROFIT: $" + GameManager.Instance.currentProfit.ToString();
     }
 }
