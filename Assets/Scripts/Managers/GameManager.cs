@@ -43,8 +43,8 @@ public class GameManager : MonoBehaviour
                 {
                     department.SpawnEmployees();
                     fights.AddRange(FightManager.Instance.GenerateFights(department));
-                    FightManager.Instance.HandleFightPhase(department);
                 }
+                FightManager.Instance.HandleFightPhase(fights);
                 break;
         }
     }
