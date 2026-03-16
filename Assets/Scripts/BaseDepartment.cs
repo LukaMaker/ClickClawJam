@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -60,6 +61,13 @@ public class BaseDepartment : MonoBehaviour
         foreach (Employee employee in newEmployees)
         {
             AssignEmployee(employee);
+        }
+    }
+    public void RemoveEmployees(List<Employee> newEmployees)
+    {
+        foreach (Employee employee in newEmployees)
+        {
+            assignedEmployees.Remove(employee);
         }
     }
 
@@ -156,6 +164,13 @@ public class BaseDepartment : MonoBehaviour
         //totalProd *= prodMultiplier;
         totalProd /= 100; //since all stats 0-100
         return totalProd;
+    }
+    public float GetProdPrediction(List<Employee> emps)
+    {
+        AssignNewEmployees(emps);
+        float prod = GetDepartmentProd();
+        RemoveEmployees(emps);
+        return prod;
     }
 
     public int GetDepartmentGross()
