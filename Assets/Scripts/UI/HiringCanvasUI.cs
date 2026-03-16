@@ -41,11 +41,11 @@ namespace Assets.Scripts.UI
             confirmRoundButton.interactable = false;
             confirmBatchButton.interactable = true;
 
-            SpawnNextBatch();
+            //SpawnNextBatch();
         }
 
         private void SpawnNextBatch()
-        {
+        {/*
             ClearActiveResumes();
 
             List<Resume> currentBatch = ApplicantManager.Instance.GetNextBatch();
@@ -59,11 +59,11 @@ namespace Assets.Scripts.UI
                     draggable.AssignedResume = assignedResume;
                 }
                 activeResumeUIElements.Add(resumeObject);
-            }
+            }*/
         }
 
         private void OnConfirmBatchClicked()
-        {
+        {/*
             ApplicantManager.Instance.ConfirmBatch();
 
             if (ApplicantManager.Instance.IsRoundComplete())
@@ -74,7 +74,7 @@ namespace Assets.Scripts.UI
             else
             {
                 SpawnNextBatch();
-            }
+            }*/
         }
 
         private void OnConfirmRoundClicked()
