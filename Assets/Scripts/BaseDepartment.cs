@@ -25,6 +25,8 @@ public class BaseDepartment : MonoBehaviour
     public int totalSalary;
     private List<Employee> assignedEmployees = new();
     private List<GameObject> spawnedEmployees = new List<GameObject>();
+    private Dictionary<Employee, GameObject> spawnedEmployeeLookup = new Dictionary<Employee, GameObject>();
+    public Queue<Fight> pendingFights = new Queue<Fight>();
 
     private void OnEnable()
     {
@@ -43,6 +45,14 @@ public class BaseDepartment : MonoBehaviour
 
     public void RemoveEmployee(Employee firedEmployee)
     {
+        if (firedEmployee == null) return;
+
+        if (!assignedEmployees.Contains(firedEmployee))
+        {
+            DespawnEmployee(firedEmployee);
+            return;
+        }
+
         //remove employee from lists
         assignedEmployees.Remove(firedEmployee);
 
@@ -54,6 +64,8 @@ public class BaseDepartment : MonoBehaviour
 
         //remove employee salary from total
         totalSalary -= firedEmployee.salary;
+
+        DespawnEmployee(firedEmployee);
     }
 
     public void AssignNewEmployees(List<Employee> newEmployees)
@@ -99,6 +111,7 @@ public class BaseDepartment : MonoBehaviour
             Destroy(employee);
         }
         spawnedEmployees.Clear();
+        spawnedEmployeeLookup.Clear();
         foreach (Employee employee in assignedEmployees)
         {
             SpawnEmployee(employee);
@@ -121,6 +134,7 @@ public class BaseDepartment : MonoBehaviour
 
         wanderer.walkArea = areaBounds;
         spawnedEmployees.Add(newEmployeeObj);
+        spawnedEmployeeLookup[employee] = newEmployeeObj;
 
         //set visuals
         newEmployeeObj.transform.GetChild(0).GetComponent<RawImage>().texture = employee.body;
@@ -133,6 +147,22 @@ public class BaseDepartment : MonoBehaviour
         newEmployeeObj.transform.GetChild(3).GetComponent<RawImage>().color = employee.colours[3];
         newEmployeeObj.transform.GetChild(4).GetComponent<RawImage>().texture = employee.accessory;
         newEmployeeObj.transform.GetChild(4).GetComponent<RawImage>().color = employee.colours[4];
+    }
+
+    private void DespawnEmployee(Employee employee)
+    {
+        if (employee == null) return;
+
+        if (spawnedEmployeeLookup.TryGetValue(employee, out GameObject employeeObject))
+        {
+            if (employeeObject != null)
+            {
+                spawnedEmployees.Remove(employeeObject);
+                Destroy(employeeObject);
+            }
+
+            spawnedEmployeeLookup.Remove(employee);
+        }
     }
     public float GetDepartmentProd()
     {

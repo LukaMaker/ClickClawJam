@@ -93,6 +93,7 @@ MonoBehaviour:
   associatedDepartment: {fileID: 0}
   departmentInfoPanel: {fileID: 3745854272953717550}
   button: {fileID: 8330427221552440515}
+  exclamationIcon: {fileID: 2546653442375107620, guid: 209e3935ca6e7cf4795d1d4cc194cf0a, type: 3}
 --- !u!114 &8330427221552440515
 MonoBehaviour:
   m_ObjectHideFlags: 0
