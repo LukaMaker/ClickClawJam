@@ -24,7 +24,7 @@ public class Employee
     public Texture accessory;
     public List<Color> colours;
     
-    public Department assignedDepartment = Department.None;
+    public BaseDepartment assignedDepartment = null;
     public float earningsMultiplier = 1f;
     public bool isFighting = false;
     public bool isFired = false;

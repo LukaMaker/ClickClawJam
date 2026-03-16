@@ -1,11 +1,11 @@
 public class Fight
 {
-    private Employee initiator;
-    private Employee target;
-    private Globals.Department department;
+    public Employee initiator { get; private set; }
+    public Employee target { get; private set; }
+    public BaseDepartment department { get; private set; }
     private Globals.FightOutcome outcome;
 
-    public Fight(Employee a, Employee b, Globals.Department type)
+    public Fight(Employee a, Employee b, BaseDepartment type)
     {
         initiator = a;
         target = b;
