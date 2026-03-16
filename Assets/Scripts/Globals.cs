@@ -22,6 +22,13 @@ public static class Globals
         Suckups
     }
 
+    public enum Gender
+    {
+        M,
+        F,
+        NB
+    }
+
     public enum Trait
     {
         Strength,

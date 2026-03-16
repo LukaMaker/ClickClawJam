@@ -6,6 +6,7 @@ public class Employee
     public int id;
     public string name;
     public PersonalityType personality;
+    public Gender gender;
     public float salary;
     public float strength;
     public float intelligence;
