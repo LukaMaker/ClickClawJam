@@ -95,6 +95,7 @@ namespace Assets.Scripts.UI
 
         private void ShowQuarterlyReport()
         {
+            quarterlyReportPanel.GetComponent<QuarterlyReport>().UpdateReportText();
             isShowingReport = true;
         }
 
