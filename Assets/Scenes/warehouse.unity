@@ -3136,11 +3136,6 @@ RectTransform:
   m_AnchoredPosition: {x: 591, y: 443}
   m_SizeDelta: {x: 360, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!224 &951797391 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4616969173054048773, guid: 0d26e86f155fa1549913b47d79d86629, type: 3}
-  m_PrefabInstance: {fileID: 8439699551173382088}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &998494602
 GameObject:
   m_ObjectHideFlags: 0
@@ -3797,6 +3792,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1719432757}
     m_Modifications:
+    - target: {fileID: 4482042078724893020, guid: ec4c9a437f2a6984cb69971b1c6f637f, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6474839320067710652, guid: ec4c9a437f2a6984cb69971b1c6f637f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 355
@@ -7505,11 +7504,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 899348707}
     m_Modifications:
-    - target: {fileID: 4064286284648831056, guid: 0a93e4e8711499d44bebb3bb28767cea, type: 3}
-      propertyPath: m_Name
-      value: FrontAlertButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636762280073139723, guid: 0a93e4e8711499d44bebb3bb28767cea, type: 3}
     - target: {fileID: 3797970827286578582, guid: 0d26e86f155fa1549913b47d79d86629, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -7517,6 +7511,14 @@ PrefabInstance:
     - target: {fileID: 4616969173054048773, guid: 0d26e86f155fa1549913b47d79d86629, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064286284648831056, guid: 0a93e4e8711499d44bebb3bb28767cea, type: 3}
+      propertyPath: m_Name
+      value: FrontAlertButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636762280073139723, guid: 0a93e4e8711499d44bebb3bb28767cea, type: 3}
+      propertyPath: 
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4636762280073139723, guid: 0a93e4e8711499d44bebb3bb28767cea, type: 3}
       propertyPath: m_Pivot.y
