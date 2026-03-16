@@ -253,7 +253,6 @@ MonoBehaviour:
   employeePrefab: {fileID: 3701396473920152676, guid: 66015c0876ff85049a9e57d3eefa0860, type: 3}
   areaBounds: {fileID: 14719062}
   baseProd: 0
-  prodMultiplier: 0
   totalSalary: 0
 --- !u!1 &125325341
 GameObject:
@@ -423,6 +422,8 @@ MonoBehaviour:
   department: {fileID: 1086311475}
   isShred: 0
   isRecycle: 0
+  hightlight: {fileID: 2100000, guid: 57efcdcbfc6a7944a88cdd48b3c40768, type: 2}
+  normal: {fileID: -39422985180420809, guid: a06aac489b1fa3946b40389eb23b3cf0, type: 3}
 --- !u!54 &249870604
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -757,7 +758,6 @@ MonoBehaviour:
   employeePrefab: {fileID: 3701396473920152676, guid: 66015c0876ff85049a9e57d3eefa0860, type: 3}
   areaBounds: {fileID: 319859177}
   baseProd: 0
-  prodMultiplier: 0
   totalSalary: 0
 --- !u!1 &386037458
 GameObject:
@@ -2197,6 +2197,8 @@ MonoBehaviour:
   department: {fileID: 998494607}
   isShred: 0
   isRecycle: 0
+  hightlight: {fileID: 2100000, guid: 57efcdcbfc6a7944a88cdd48b3c40768, type: 2}
+  normal: {fileID: -39422985180420809, guid: a06aac489b1fa3946b40389eb23b3cf0, type: 3}
 --- !u!54 &899145572
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2428,7 +2430,6 @@ MonoBehaviour:
   employeePrefab: {fileID: 3701396473920152676, guid: 66015c0876ff85049a9e57d3eefa0860, type: 3}
   areaBounds: {fileID: 998494603}
   baseProd: 0
-  prodMultiplier: 0
   totalSalary: 0
 --- !u!1001 &1064679485
 PrefabInstance:
@@ -2688,7 +2689,6 @@ MonoBehaviour:
   employeePrefab: {fileID: 3701396473920152676, guid: 66015c0876ff85049a9e57d3eefa0860, type: 3}
   areaBounds: {fileID: 1086311471}
   baseProd: 0
-  prodMultiplier: 0
   totalSalary: 0
 --- !u!1 &1090979781
 GameObject:
@@ -3481,6 +3481,8 @@ MonoBehaviour:
   department: {fileID: 14719066}
   isShred: 0
   isRecycle: 0
+  hightlight: {fileID: 2100000, guid: 57efcdcbfc6a7944a88cdd48b3c40768, type: 2}
+  normal: {fileID: -39422985180420809, guid: a06aac489b1fa3946b40389eb23b3cf0, type: 3}
 --- !u!54 &1269092169
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3544,6 +3546,8 @@ MonoBehaviour:
   department: {fileID: 319859181}
   isShred: 0
   isRecycle: 0
+  hightlight: {fileID: 2100000, guid: 57efcdcbfc6a7944a88cdd48b3c40768, type: 2}
+  normal: {fileID: -39422985180420809, guid: a06aac489b1fa3946b40389eb23b3cf0, type: 3}
 --- !u!54 &1269092172
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4798,9 +4802,17 @@ PrefabInstance:
       value: Recycle
       objectReference: {fileID: 0}
     - target: {fileID: 9112832524777361426, guid: 8d2b2cc5e7c238c459b80199fdfe3ae9, type: 3}
+      propertyPath: normal
+      value: 
+      objectReference: {fileID: -39422985180420809, guid: a06aac489b1fa3946b40389eb23b3cf0, type: 3}
+    - target: {fileID: 9112832524777361426, guid: 8d2b2cc5e7c238c459b80199fdfe3ae9, type: 3}
       propertyPath: isRecycle
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9112832524777361426, guid: 8d2b2cc5e7c238c459b80199fdfe3ae9, type: 3}
+      propertyPath: hightlight
+      value: 
+      objectReference: {fileID: 2100000, guid: 57efcdcbfc6a7944a88cdd48b3c40768, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5576,9 +5588,17 @@ PrefabInstance:
       value: Trash
       objectReference: {fileID: 0}
     - target: {fileID: 9112832524777361426, guid: 8d2b2cc5e7c238c459b80199fdfe3ae9, type: 3}
+      propertyPath: normal
+      value: 
+      objectReference: {fileID: -39422985180420809, guid: a06aac489b1fa3946b40389eb23b3cf0, type: 3}
+    - target: {fileID: 9112832524777361426, guid: 8d2b2cc5e7c238c459b80199fdfe3ae9, type: 3}
       propertyPath: isShred
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9112832524777361426, guid: 8d2b2cc5e7c238c459b80199fdfe3ae9, type: 3}
+      propertyPath: hightlight
+      value: 
+      objectReference: {fileID: 2100000, guid: 57efcdcbfc6a7944a88cdd48b3c40768, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
