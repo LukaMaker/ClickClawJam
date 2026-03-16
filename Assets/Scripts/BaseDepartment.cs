@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -84,14 +85,34 @@ public class BaseDepartment : MonoBehaviour
     public int GetDepartmentGross()
     {
         int gross = 0;
-        float totalStr = 0, totalInt = 0, totalChr = 0;
+        float totalStr = 0, totalInt = 0, totalChr = 0, totalProd = 0;
         foreach (Employee emp in assignedEmployees)
         {
             totalStr += emp.strength;
             totalInt += emp.intelligence;
             totalChr += emp.charisma;
         }
+
         //need to multiply by desired stats scaling
+        foreach (StatWeight statweight in DesiredStats)
+        {
+            switch (statweight.Stat)
+            {
+                case Globals.Trait.Charisma:
+                    totalProd += (totalChr*statweight.Weighting);
+                    break;
+                case Globals.Trait.Intelligence:
+                    totalProd += (totalInt*statweight.Weighting);
+                    break;
+                case Globals.Trait.Strength:
+                    totalProd += (totalStr*statweight.Weighting);
+                    break;
+            }
+        }
+
+        totalProd *= prodMultiplier;
+        gross = (int)totalProd;
+        
         return gross;
     }
 }
