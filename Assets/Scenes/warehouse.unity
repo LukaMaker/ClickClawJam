@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d11c31b7223302548bfeac8e38abb34f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BaseDepartment
-  DepartmentType: 2
+  DepartmentType: 1
   DesiredStats:
   - Stat: 0
     Weighting: 1
@@ -746,7 +746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d11c31b7223302548bfeac8e38abb34f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BaseDepartment
-  DepartmentType: 3
+  DepartmentType: 2
   DesiredStats:
   - Stat: 2
     Weighting: 0.2
@@ -2679,7 +2679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d11c31b7223302548bfeac8e38abb34f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BaseDepartment
-  DepartmentType: 4
+  DepartmentType: 3
   DesiredStats:
   - Stat: 0
     Weighting: 0
@@ -2939,7 +2939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d11c31b7223302548bfeac8e38abb34f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BaseDepartment
-  DepartmentType: 1
+  DepartmentType: 0
   DesiredStats:
   - Stat: 2
     Weighting: 1
