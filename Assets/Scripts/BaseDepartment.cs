@@ -101,9 +101,8 @@ public class BaseDepartment : MonoBehaviour
         wanderer.walkArea = areaBounds;
         spawnedEmployees.Add(employee);
     }
-    public int GetDepartmentGross()
+    public float GetDepartmentProd()
     {
-        int gross = 0;
         float totalStr = 0, totalInt = 0, totalChr = 0, totalProd = 0;
         foreach (Employee emp in assignedEmployees)
         {
@@ -130,8 +129,13 @@ public class BaseDepartment : MonoBehaviour
         }
 
         totalProd *= prodMultiplier;
-        gross = (int)totalProd;
-        
+        return totalProd;
+    }
+
+    public int GetDepartmentGross()
+    {
+        float totalProd = GetDepartmentProd();
+        int gross = (int)totalProd*GameConfig.ProductivityRatio;
         return gross;
     }
 }
