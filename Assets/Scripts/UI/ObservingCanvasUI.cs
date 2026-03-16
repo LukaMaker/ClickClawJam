@@ -7,12 +7,8 @@ namespace Assets.Scripts.UI
     [RequireComponent(typeof(CanvasGroup))]
     public class ObservingCanvasUI : MonoBehaviour
     {
-        [Header("Observing Phase UI")]
         [SerializeField] private Button confirmObservingEndedButton;
-        [Tooltip("Assign an empty GameObject here containing other UI buttons you want to hide when the report shows.")]
         [SerializeField] private GameObject otherButtonsContainer; 
-
-        [Header("Quarterly Report UI")]
         [SerializeField] private GameObject quarterlyReportPanel;
         [SerializeField] private Button proceedToNextStageButton;
 
@@ -52,7 +48,6 @@ namespace Assets.Scripts.UI
 
         private void HandleGameStateChanged(GameState state)
         {
-            // Reset the report view when we re-enter the observing state
             if (state == GameState.Observing)
             {
                 isShowingReport = false;
@@ -68,7 +63,6 @@ namespace Assets.Scripts.UI
         {
             bool isObservingState = GameManager.Instance.currentState == GameState.Observing;
             
-            // Toggle observing button visibility (hidden when reading report)
             if (confirmObservingEndedButton != null)
             {
                 confirmObservingEndedButton.gameObject.SetActive(isObservingState && !isShowingReport);
@@ -90,7 +84,6 @@ namespace Assets.Scripts.UI
                 proceedToNextStageButton.gameObject.SetActive(isObservingState && isShowingReport);
             }
 
-            // Canvas group interaction completely controls general viewing visibility
             if (canvasGroup != null)
             {
                 bool shouldBeActive = isViewingWarehouse || isObservingState;
