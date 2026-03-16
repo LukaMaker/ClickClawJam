@@ -67,7 +67,7 @@ public class BaseDepartment : MonoBehaviour
     {
         foreach (Employee employee in newEmployees)
         {
-            assignedEmployees.Remove(employee);
+            RemoveEmployee(employee);
         }
     }
 
