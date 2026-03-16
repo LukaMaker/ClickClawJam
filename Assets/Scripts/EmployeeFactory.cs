@@ -46,6 +46,7 @@ public static class EmployeeFactory
         e.mouth = EmployeeSpritePool.Instance.GetRandomMouth();
         e.nose = EmployeeSpritePool.Instance.GetRandomNose();
         e.accessory = EmployeeSpritePool.Instance.GetRandomAccessory();
+        e.colours = new List<Color>() { UnityEngine.Random.ColorHSV(), UnityEngine.Random.ColorHSV(), UnityEngine.Random.ColorHSV(), UnityEngine.Random.ColorHSV(), UnityEngine.Random.ColorHSV() };
         e.strength = strength;
         e.intelligence = intelligence;
         e.charisma = charisma;

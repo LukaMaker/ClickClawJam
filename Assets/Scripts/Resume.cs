@@ -14,10 +14,15 @@ public class Resume : MonoBehaviour
     {
         Employee = employee;
         body.texture = Employee.body;
+        body.color = Employee.colours[0];
         nose.texture = Employee.nose;
+        nose.color = Employee.colours[1];
         mouth.texture = Employee.mouth;
+        mouth.color = Employee.colours[2];
         hair.texture = Employee.hair;
+        hair.color = Employee.colours[3];
         accesories.texture = Employee.accessory;
+        accesories.color = Employee.colours[4];
         strength.rectTransform.sizeDelta = new Vector2(statWidth * (Employee.strength/100), statHeight);
         intelligence.rectTransform.sizeDelta = new Vector2(statWidth * (Employee.intelligence / 100), statHeight);
         charisma.rectTransform.sizeDelta = new Vector2(statWidth * (Employee.charisma / 100), statHeight);

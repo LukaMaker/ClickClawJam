@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using static Globals;
 
@@ -21,9 +22,9 @@ public class Employee
     public Texture mouth;
     public Texture nose;
     public Texture accessory;
-    public Color hairColour;
+    public List<Color> colours;
     
-    public Department assignedDepartment = Department.None;
+    public BaseDepartment assignedDepartment = null;
     public float earningsMultiplier = 1f;
     public bool isFighting = false;
     public bool isFired = false;

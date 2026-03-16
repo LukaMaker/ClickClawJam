@@ -6,7 +6,7 @@ using System.Linq;
 
 public class FightManager : MonoBehaviour
 {
-    public List<Fight> GenerateFights(List<Employee> employees, Globals.Department department, int maxFights)
+    public List<Fight> GenerateFights(List<Employee> employees, BaseDepartment department, int maxFights)
     {
         List<Fight> fights = new();
 
@@ -40,17 +40,21 @@ public class FightManager : MonoBehaviour
             .ToList();
     }
 
-    public void Resolve(Fight fight, Globals.FightOutcome outcome, Employee reallocated = null)
+    public void Resolve(Fight fight, Globals.FightOutcome outcome)
     {
+        Employee instigator = fight.initiator;
+        Employee target = fight.target;
+        BaseDepartment department = fight.department;
+
         switch (outcome)
         {
             case Globals.FightOutcome.InstTerminated:
                 // remove instigator
-                // apply productivity boost to target
+                department.RemoveEmployee(instigator);
                 break;
             case Globals.FightOutcome.TargTerminated:
                 // remove target
-                // apply productivity boost to instigator?
+                department.RemoveEmployee(target);
                 break;
         }
     }

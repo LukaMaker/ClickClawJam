@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public struct StatWeight
@@ -21,6 +22,7 @@ public class BaseDepartment : MonoBehaviour
     public int employeeCount { get; private set; }
     public float baseProd;
     public float prodMultiplier;
+    public int totalSalary;
     private List<Employee> assignedEmployees = new List<Employee>();
     private HashSet<Employee> spawnedEmployees = new HashSet<Employee>();
 
@@ -32,6 +34,23 @@ public class BaseDepartment : MonoBehaviour
     private void OnDisable()
     {
         EventBus.OnHireRoundEnded -= HandleHireRoundEnded;
+    }
+
+    public void RemoveEmployee(Employee firedEmployee)
+    {
+        //remove employee from lists
+        assignedEmployees.Remove(firedEmployee);
+        spawnedEmployees.Remove(firedEmployee);
+
+        // remove employee prod multiplier from average
+        float empProdMult = Globals.ProductivityMatrix[firedEmployee.personality];
+        prodMultiplier = ((prodMultiplier * employeeCount) - empProdMult)/(employeeCount - 1);
+
+        //remove employee from count
+        employeeCount -= 1;
+
+        //remove employee salary from total
+        totalSalary -= firedEmployee.salary;
     }
 
     public void AssignNewEmployees(List<Employee> newEmployees)
@@ -48,6 +67,7 @@ public class BaseDepartment : MonoBehaviour
         float newEmpProdMult = Globals.ProductivityMatrix[newEmployee.personality];
         prodMultiplier = ((prodMultiplier * employeeCount) + newEmpProdMult)/(employeeCount + 1);
         employeeCount += 1;
+        totalSalary += newEmployee.salary;
     }
 
     private void HandleHireRoundEnded(Dictionary<BaseDepartment, List<Employee>> hiredEmployees)
@@ -81,10 +101,21 @@ public class BaseDepartment : MonoBehaviour
 
         wanderer.walkArea = areaBounds;
         spawnedEmployees.Add(employee);
+
+        //set visuals
+        newEmployeeObj.transform.GetChild(0).GetComponent<RawImage>().texture = employee.body;
+        newEmployeeObj.transform.GetChild(0).GetComponent<RawImage>().color = employee.colours[0];
+        newEmployeeObj.transform.GetChild(1).GetComponent<RawImage>().texture = employee.nose;
+        newEmployeeObj.transform.GetChild(1).GetComponent<RawImage>().color = employee.colours[1];
+        newEmployeeObj.transform.GetChild(2).GetComponent<RawImage>().texture = employee.mouth;
+        newEmployeeObj.transform.GetChild(2).GetComponent<RawImage>().color = employee.colours[2];
+        newEmployeeObj.transform.GetChild(3).GetComponent<RawImage>().texture = employee.hair;
+        newEmployeeObj.transform.GetChild(3).GetComponent<RawImage>().color = employee.colours[3];
+        newEmployeeObj.transform.GetChild(4).GetComponent<RawImage>().texture = employee.accessory;
+        newEmployeeObj.transform.GetChild(4).GetComponent<RawImage>().color = employee.colours[4];
     }
-    public int GetDepartmentGross()
+    public float GetDepartmentProd()
     {
-        int gross = 0;
         float totalStr = 0, totalInt = 0, totalChr = 0, totalProd = 0;
         foreach (Employee emp in assignedEmployees)
         {
@@ -111,8 +142,13 @@ public class BaseDepartment : MonoBehaviour
         }
 
         totalProd *= prodMultiplier;
-        gross = (int)totalProd;
-        
+        return totalProd;
+    }
+
+    public int GetDepartmentGross()
+    {
+        float totalProd = GetDepartmentProd();
+        int gross = (int)totalProd*GameConfig.ProductivityRatio;
         return gross;
     }
 }

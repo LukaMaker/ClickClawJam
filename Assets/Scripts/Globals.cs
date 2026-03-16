@@ -7,7 +7,6 @@ public static class Globals
 
     public enum Department
     {
-        None,
         FrontDesk,
         Replenishment,
         Garden,
@@ -90,15 +89,6 @@ public static class Globals
         Unresolved,
         InstTerminated,
         TargTerminated
-    }
-
-    [Serializable]
-    public class FightEvent
-    {
-        public ObservingEvent eventType = ObservingEvent.Fight;
-        public Employee initiator;
-        public Employee target;
-        public Department department;
     }
 
     [Serializable]
