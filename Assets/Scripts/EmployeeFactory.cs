@@ -7,6 +7,18 @@ using static Globals;
 public static class EmployeeFactory
 {
     private static System.Random rng = new System.Random();
+    private static EmployeeSpritePool _spritePool;
+    private static EmployeeSpritePool SpritePool
+    {
+        get
+        {
+            if (_spritePool == null)
+            {
+                _spritePool = GameObject.FindAnyObjectByType<EmployeeSpritePool>();
+            }
+            return _spritePool;
+        }
+    }
     public static List<Employee> CreateGlobalPool(int count)
     {
         List<Employee> pool = new List<Employee>(count);
@@ -26,14 +38,19 @@ public static class EmployeeFactory
 
         return new Employee()
         {
-            id = id,
-            personality = (PersonalityType)UnityEngine.Random.Range(0, Enum.GetValues(typeof(PersonalityType)).Length),
-            gender = gender,
-            name = GenerateName(gender),
-            strength = strength,
-            intelligence = intelligence,
-            charisma = charisma,
-            salary = GenerateSalary(strength, intelligence, charisma)
+            id =            id,
+            personality =   (PersonalityType)UnityEngine.Random.Range(0, Enum.GetValues(typeof(PersonalityType)).Length),
+            gender =        gender,
+            name =          GenerateName(gender),
+            body =          SpritePool.GetRandomBody(gender, false),
+            hair =          SpritePool.GetRandomHair(gender),
+            mouth =         SpritePool.GetRandomMouth(),
+            nose =          SpritePool.GetRandomNose(),
+            accessory =     SpritePool.GetRandomAccessory(),
+            strength =      strength,
+            intelligence =  intelligence,
+            charisma =      charisma,
+            salary =        GenerateSalary(strength, intelligence, charisma)
         };
     }
 
